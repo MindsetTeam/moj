@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./index.css";
+import styles from "./contact.module.css";
 
 // Image
 import Ministry from "../../asset/contact/ministry.jpg";
@@ -11,7 +11,7 @@ export class index extends Component {
   render() {
     return (
       <div
-        className="container-fluid my-2 pt-3 contact"
+        className="container-fluid my-2 pt-3"
         style={{ background: "#FDEFC2" }}
       >
         <h4 className="text-danger font-weight-bolder">ទំនាក់ទំនងសាធារណៈ</h4>

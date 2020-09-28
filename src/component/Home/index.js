@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./index.css";
+import styles from "./home.module.css";
 import { Link } from "react-router-dom";
 
 // Image
@@ -25,11 +25,11 @@ export class index extends Component {
         {/* Carousel */}
         <div
           id="carouselExampleIndicators"
-          className="carousel slide carousel-fade"
+          className={"carousel slide carousel-fade " + styles.carousel}
           data-ride="carousel"
           data-interval="3000"
         >
-          <ol className="carousel-indicators">
+          <ol className={"carousel-indicators " + styles.carouselIndicators}>
             <li
               data-target="#carouselExampleIndicators"
               data-slide-to="0"
@@ -41,29 +41,39 @@ export class index extends Component {
             <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
           </ol>
           <div className="carousel-inner">
-            <div className="carousel-item active">
+            <div
+              className={
+                styles.carouselItem +
+                " carousel-item active " +
+                styles.carouselItemActive
+              }
+            >
               <div className="row">
-                <div className="order-lg-1 order-2 carousel-left-container">
+                <div
+                  className={
+                    "order-lg-1 order-2 " + styles.carouselLeftContainer
+                  }
+                >
                   <div className="m-4">
-                    <h4 className="news-title">
+                    <h4 className={styles.newsTitle}>
                       ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
                       អញ្ជើញជាអធិបតីក្នុងពិធីប្រកាសតែងតាំង
                       និងចូលកាន់មុខតំណែងប្រធានសាលាដំបូងខេត្តព្រៃវែង
                     </h4>
-                    <p className="carousel-left-container-date px-1 px-md-2 mt-lg-4">
+                    <p
+                      className={
+                        "px-1 px-md-2 mt-lg-4 " +
+                        styles.carouselLeftContainerDate
+                      }
+                    >
                       ថ្ងៃទី៤ ខែសីហា ឆ្នាំ២០២០
                     </p>
                   </div>
-                  <a
-                    type="button"
-                    className="btn btn-more-news d-none"
-                    href="#"
-                  >
-                    បន្ថែម
-                  </a>
                 </div>
                 <div
-                  className=" order-1 order-lg-2 carousel-img"
+                  className={
+                    "order-1 order-lg-2 carousel-img " + styles.carouselImg
+                  }
                   style={{
                     backgroundImage:
                       "url(http://moj.gov.kh/files/user-folder/2020/08/004/002/017_040820_MOJ_KH.jpg)",
@@ -71,29 +81,33 @@ export class index extends Component {
                 ></div>
               </div>
             </div>
-            <div className="carousel-item">
+            <div className={"carousel-item " + styles.carouselItem}>
               <div className="row">
-                <div className="order-lg-1 order-2 carousel-left-container">
+                <div
+                  className={
+                    "order-lg-1 order-2 " + styles.carouselLeftContainer
+                  }
+                >
                   <div className="m-4">
-                    <h4 className="news-title">
+                    <h4 className={styles.newsTitle}>
                       ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
                       និងជាអនុប្រធានអាជ្ញាធរជាតិប្រយុទ្ធប្រឆាំងគ្រឿងញៀនអញ្ជើញចូលរួមជាអធិបតីក្នុងពិធីដុតបំផ្លាញគ្រឿងញៀន
                       នៅស្វាយរៀង
                     </h4>
-                    <p className="carousel-left-container-date px-1 px-md-2 mt-lg-4">
+                    <p
+                      className={
+                        "px-1 px-md-2 mt-lg-4 " +
+                        styles.carouselLeftContainerDate
+                      }
+                    >
                       ថ្ងៃទី៤ ខែសីហា ឆ្នាំ២០២០
                     </p>
                   </div>
-                  <a
-                    type="button"
-                    className="btn btn-more-news d-none"
-                    href="#"
-                  >
-                    បន្ថែម
-                  </a>
                 </div>
                 <div
-                  className=" order-1 order-lg-2 carousel-img"
+                  className={
+                    "order-1 order-lg-2 carousel-img " + styles.carouselImg
+                  }
                   style={{
                     backgroundImage:
                       "url(http://moj.gov.kh/files/user-folder/2020/08/004/001/007_040820_MOJ_KH.jpg)",
@@ -101,28 +115,33 @@ export class index extends Component {
                 ></div>
               </div>
             </div>
-            <div className="carousel-item ">
+            <div className={"carousel-item " + styles.carouselItem}>
               <div className="row">
-                <div className="order-lg-1 order-2 carousel-left-container">
+                <div
+                  className={
+                    "order-lg-1 order-2 " + styles.carouselLeftContainer
+                  }
+                >
                   <div className="m-4">
-                    <h4 className="news-title">
+                    <h4 className={styles.newsTitle}>
                       ឯកឧត្តមរដ្ឋមន្ត្រី កើត រិទ្ធ
                       អញ្ជើញជាអធិបតីក្នុងពិធីប្រកាសចូលកាន់មុខតំណែងជាផ្លូវការរបស់ប្រធានសាលាដំបូងខេត្តក្រចេះ
                     </h4>
-                    <p className="carousel-left-container-date px-1 px-md-2 mt-3 mt-lg-4">
+
+                    <p
+                      className={
+                        "px-1 px-md-2 mt-lg-4 " +
+                        styles.carouselLeftContainerDate
+                      }
+                    >
                       ថ្ងៃទី៣១ ខែកក្កដា ឆ្នាំ២០២០
                     </p>
                   </div>
-                  <a
-                    type="button"
-                    className="btn btn-more-news d-none"
-                    href="#"
-                  >
-                    បន្ថែម
-                  </a>
                 </div>
                 <div
-                  className=" order-1 order-lg-2 carousel-img"
+                  className={
+                    "order-1 order-lg-2 carousel-img " + styles.carouselImg
+                  }
                   style={{
                     backgroundImage:
                       "url(http://moj.gov.kh/files/user-folder/2020/07/031/001/003_310720_MOJ_KH.jpg)",
@@ -130,29 +149,33 @@ export class index extends Component {
                 ></div>
               </div>
             </div>
-            <div className="carousel-item ">
+            <div className={"carousel-item " + styles.carouselItem}>
               <div className="row">
-                <div className="order-lg-1 order-2 carousel-left-container">
+                <div
+                  className={
+                    "order-lg-1 order-2 " + styles.carouselLeftContainer
+                  }
+                >
                   <div className="m-4">
-                    <h4 className="news-title">
+                    <h4 className={styles.newsTitle}>
                       ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
                       បួងសួងសុំសេចក្តីសុខលើទ្រព្យសម្បត្តិថ្មីក្នុងវិស័យយុត្តិធម៌
                       នាទឹកដីអង្គរខេត្តសៀមរាប
                     </h4>
-                    <p className="carousel-left-container-date px-1 px-md-2 mt-3 mt-lg-4">
+                    <p
+                      className={
+                        "px-1 px-md-2 mt-lg-4 " +
+                        styles.carouselLeftContainerDate
+                      }
+                    >
                       ថ្ងៃទី២៨ ខែកក្កដា ឆ្នាំ២០២០
                     </p>
                   </div>
-                  <a
-                    type="button"
-                    className="btn btn-more-news d-none"
-                    href="#"
-                  >
-                    បន្ថែម
-                  </a>
                 </div>
                 <div
-                  className=" order-1 order-lg-2 carousel-img"
+                  className={
+                    "order-1 order-lg-2 carousel-img " + styles.carouselImg
+                  }
                   style={{
                     backgroundImage:
                       "url(http://moj.gov.kh/files/user-folder/2020/07/028/001/001_280720_MOJ_KH.jpg)",
@@ -160,28 +183,32 @@ export class index extends Component {
                 ></div>
               </div>
             </div>
-            <div className="carousel-item ">
+            <div className={"carousel-item " + styles.carouselItem}>
               <div className="row">
-                <div className="order-lg-1 order-2 carousel-left-container">
+                <div
+                  className={
+                    "order-lg-1 order-2 " + styles.carouselLeftContainer
+                  }
+                >
                   <div className="m-4">
-                    <h4 className="news-title">
+                    <h4 className={styles.newsTitle}>
                       ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
                       នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សីអញ្ជើញចូលរួមចែកកង់ចំនួន៣៥១​គ្រឿងដល់​សិស្សានុសិស្ស​នៃអនុវិទ្យាល័យតាណាក
                     </h4>
-                    <p className="carousel-left-container-date px-1 px-md-2 mt-3 mt-lg-4">
+                    <p
+                      className={
+                        "px-1 px-md-2 mt-lg-4 " +
+                        styles.carouselLeftContainerDate
+                      }
+                    >
                       ថ្ងៃទី២៧ ខែកក្កដា ឆ្នាំ២០២០
                     </p>
                   </div>
-                  <a
-                    type="button"
-                    className="btn btn-more-news d-none"
-                    href="#"
-                  >
-                    បន្ថែម
-                  </a>
                 </div>
                 <div
-                  className=" order-1 order-lg-2 carousel-img"
+                  className={
+                    "order-1 order-lg-2 carousel-img " + styles.carouselImg
+                  }
                   style={{
                     backgroundImage:
                       "url(http://moj-kh.herokuapp.com/Images/slideshow-5.jpg)",
@@ -194,7 +221,7 @@ export class index extends Component {
           </div>
 
           {/* Marquee */}
-          <div className="marquee">
+          <div className={styles.marquee}>
             <h3 className="px-2">សេចក្ដីជូនដំណឹង</h3>
             <marquee
               ref={this.marqueeRef}
@@ -222,25 +249,33 @@ export class index extends Component {
             </marquee>
           </div>
           <a
-            className="carousel-control-prev d-none"
+            className={
+              "carousel-control-prev d-none " + styles.carouselControlPrev
+            }
             href="#carouselExampleIndicators"
             role="button"
             data-slide="prev"
           >
             <span
-              className="carousel-control-prev-icon"
+              className={
+                "carousel-control-prev-icon " + styles.carouselControlPrevIcon
+              }
               aria-hidden="true"
             ></span>
             <span className="sr-only">Previous</span>
           </a>
           <a
-            className="carousel-control-next d-none"
+            className={
+              "carousel-control-next d-none " + styles.carouselControlNext
+            }
             href="#carouselExampleIndicators"
             role="button"
             data-slide="next"
           >
             <span
-              className="carousel-control-next-icon"
+              className={
+                "carousel-control-next-icon " + styles.carouselControlNextIcon
+              }
               aria-hidden="true"
             ></span>
             <span className="sr-only">Next</span>
@@ -251,18 +286,26 @@ export class index extends Component {
         {/* Section */}
         <div className="sections-container mt-2">
           {/* Left Section */}
-          <div className="left-section">
+          <div className={styles.leftSection}>
             {/* Minister Image */}
-            <div className="minster-img-container p-2">
-              <div className="minister-img">
-                <div className="minister-img-title w-100 d-block text-center">
+            <div className={"p-2 " + styles.ministerImgContainer}>
+              <div className={styles.ministerImg}>
+                <div
+                  className={
+                    "w-100 d-block text-center " + styles.ministerImgTitle
+                  }
+                >
                   <span>ឯកឧត្តម កើត រិទ្ធ រដ្ឋមន្រ្ដីក្រសួងយុត្តិធម៌</span>
                 </div>
               </div>
             </div>
 
             {/* Left Section links */}
-            <div className="left-section-links-container my-2 p-2 py-3 pl-4">
+            <div
+              className={
+                "my-2 p-2 py-3 pl-4 " + styles.leftSectionLinksContainer
+              }
+            >
               <ul>
                 <li>
                   <Link>សកម្មភាពរដ្ឋមន្រ្ដី</Link>
@@ -280,12 +323,16 @@ export class index extends Component {
             </div>
 
             {/* Activities */}
-            <div className="activities-container mb-2">
-              <div className="title mb-1 p-1 px-2 pt-2">
+            <div className={"mb-2 " + styles.activitiesContainer}>
+              <div
+                className={
+                  "mb-1 p-1 px-2 pt-2 " + styles.activitiesContainerTitle
+                }
+              >
                 សកម្មភាពរបស់ក្រសួងយុត្តិធម៌
               </div>
-              <div className="activities">
-                <div className="activity">
+              <div className={styles.activities}>
+                <div className={styles.activity}>
                   <Link>
                     <img src={Activity1} alt="" />
                     <p>
@@ -295,7 +342,7 @@ export class index extends Component {
                     </p>
                   </Link>
                 </div>
-                <div className="activity">
+                <div className={styles.activity}>
                   <Link>
                     <img src={Activity2} alt="" />
                     <p>
@@ -305,7 +352,7 @@ export class index extends Component {
                     </p>
                   </Link>
                 </div>
-                <div className="activity">
+                <div className={styles.activity}>
                   <Link>
                     <img src={Activity3} alt="" />
                     <p>
@@ -315,7 +362,7 @@ export class index extends Component {
                     </p>
                   </Link>
                 </div>
-                <div className="activity">
+                <div className={styles.activity}>
                   <Link>
                     <img src={Activity4} alt="" />
                     <p>
@@ -325,7 +372,7 @@ export class index extends Component {
                     </p>
                   </Link>
                 </div>
-                <div className="activity">
+                <div className={styles.activity}>
                   <Link>
                     <img src={Activity5} alt="" />
                     <p>
@@ -335,7 +382,7 @@ export class index extends Component {
                     </p>
                   </Link>
                 </div>
-                <div className="activity">
+                <div className={styles.activity}>
                   <Link>
                     <img src={Activity6} alt="" />
                     <p>
@@ -350,18 +397,33 @@ export class index extends Component {
           </div>
 
           {/* Right Sections */}
-          <div className="right-section">
+          <div className={styles.rightSection}>
             {/* Latest news */}
-            <div className="latest-news-container">
-              <div className="title mb-1 p-1 px-2 pt-2">ព័ត៌មានថ្មីៗ</div>
-              <div className="latest-news row">
-                <div className="latest-news-info col-lg-7 pt-0 pt-md-0 py-md-3 px-4">
-                  <h1 className="latest-news-info-title">
+            <div className={styles.latestNewsContainer}>
+              <div
+                className={
+                  "mb-1 p-1 px-2 pt-2 " + styles.latestNewsContainerTitle
+                }
+              >
+                ព័ត៌មានថ្មីៗ
+              </div>
+              <div className={"row " + styles.latestNews}>
+                <div
+                  className={
+                    "col-lg-7 pt-0 pt-md-0 py-md-3 px-4 " +
+                    styles.latestNewsInfo
+                  }
+                >
+                  <h1 className={styles.latestNewsInfoTitle}>
                     ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
                     អញ្ជើញជាអធិបតីក្នុងពិធីប្រកាសតែងតាំង
                     និងចូលកាន់មុខតំណែងប្រធានសាលាដំបូងខេត្តព្រៃវែង
                   </h1>
-                  <p className="d-none d-lg-block latest-news-info-description">
+                  <p
+                    className={
+                      "d-none d-lg-block " + styles.latestNewsInfoDescription
+                    }
+                  >
                     នៅរសៀលថ្ងៃទី៤ ខែសីហា ឆ្នាំ២០២០ នេះ ឯកឧត្តម កើត រិទ្ធ
                     រដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌ បានអញ្ជើញ​ជាអធិបតីដ៏ខ្ពង់ខ្ពស់
                     ក្នុងពិធីប្រកាសតែងតាំង
@@ -370,11 +432,16 @@ export class index extends Component {
                       <Link style={{ color: "#e53e3e" }}> អានបន្ត...</Link>
                     </span>
                   </p>
-                  <p className="latest-news-info-date">
+                  <p className={styles.latestNewsInfoDate}>
                     ថ្ងៃទី៤ ខែសីហា ឆ្នាំ២០២០
                   </p>
                 </div>
-                <div className="latest-news-thumbnail col-lg-5 p-0 pb-lg-3 pt-lg-2 pr-lg-2">
+                <div
+                  className={
+                    "col-lg-5 p-0 pb-lg-3 pt-lg-2 pr-lg-2 " +
+                    styles.latestNewsThumbnail
+                  }
+                >
                   <div
                     style={{
                       backgroundImage:
@@ -387,8 +454,12 @@ export class index extends Component {
             </div>
 
             {/* Daily news */}
-            <div className="daily-news-container my-2">
-              <div className="title mb-1 p-1 px-2 pt-2">
+            <div className={"my-2 " + styles.dailyNewsContainer}>
+              <div
+                className={
+                  "mb-1 p-1 px-2 pt-2 " + styles.dailyNewsContainerTitle
+                }
+              >
                 ព័ត៌មានប្រចាំថ្ងៃ
                 <span className="more">
                   <Link style={{ textDecoration: "none", color: "inherit" }}>
@@ -396,119 +467,127 @@ export class index extends Component {
                   </Link>
                 </span>
               </div>
-              <div className="daily-news row px-3">
-                <div className="each-daily-news col-md-6 col-12 py-4 px-2 m-0">
-                  <div
-                    className="each-daily-news-thumbnail"
-                    style={{ width: "40% !important", height: "100%" }}
-                  >
+              <div className={"row px-3 " + styles.dailyNews}>
+                <div
+                  className={
+                    "col-md-6 col-12 py-4 px-2 m-0 " + styles.eachDailyNews
+                  }
+                >
+                  <div style={{ width: "40%", height: "100%" }}>
                     <img
                       src="http://moj.gov.kh/files/user-folder/2020/07/027/001/001_270720_MOJ_KH.jpg"
                       alt=""
-                      style={{ height: "100%" }}
+                      style={{ height: "100%", width: "100%" }}
                     />
                   </div>
                   <div
-                    className="each-daily-news-info py-lg-1 pl-2"
-                    style={{ width: "60% !important" }}
+                    className={"py-lg-1 pl-2 " + styles.eachDailyNewsInfo}
+                    style={{ width: "60%" }}
                   >
-                    <h1 className="each-daily-news-info-title">
+                    <h1 className={styles.eachDailyNewsInfoTitle}>
                       <Link>
                         ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
                         នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សី...
                       </Link>
                     </h1>
-                    <p className="each-daily-news-info-date">
+                    <p className={styles.eachDailyNewsInfoDate}>
                       ថ្ងៃទី២៧ ខែកក្កដា ឆ្នាំ២០២០
                     </p>
                   </div>
                 </div>
-                <div className="each-daily-news col-md-6 col-12 py-4 px-2 m-0">
-                  <div
-                    className="each-daily-news-thumbnail"
-                    style={{ width: "40% !important", height: "100%" }}
-                  >
+                <div
+                  className={
+                    "col-md-6 col-12 py-4 px-2 m-0 " + styles.eachDailyNews
+                  }
+                >
+                  <div style={{ width: "40%", height: "100%" }}>
                     <img
                       src="http://www.moj.gov.kh/files/events/1595733428003_240720_MOJ_KH.jpg"
                       alt=""
-                      style={{ height: "100%" }}
+                      style={{ height: "100%", width: "100%" }}
                     />
                   </div>
                   <div
-                    className="each-daily-news-info py-lg-1 pl-2"
-                    style={{ width: "60% !important" }}
+                    className={"py-lg-1 pl-2 " + styles.eachDailyNewsInfo}
+                    style={{ width: "60%" }}
                   >
-                    <h1 className="each-daily-news-info-title">
+                    <h1 className={styles.eachDailyNewsInfoTitle}>
                       <Link>
                         ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
                         អញ្ជើញចូលរួមជាអធិបតីក្នុងពិធីប្រកាសផ្ទេរ
                         និងចូលកាន់មុខតំណែង...
                       </Link>
                     </h1>
-                    <p className="each-daily-news-info-date">
+                    <p className={styles.eachDailyNewsInfoDate}>
                       ថ្ងៃទី២៦ ខែកក្កដា ឆ្នាំ២០២០
                     </p>
                   </div>
                 </div>
                 <hr className="w-100 m-0 d-none d-md-block" />
-                <div className="each-daily-news col-md-6 col-12 py-4 px-2 m-0">
-                  <div
-                    className="each-daily-news-thumbnail"
-                    style={{ width: "40% !important", height: "100%" }}
-                  >
+                <div
+                  className={
+                    "col-md-6 col-12 py-4 px-2 m-0 " + styles.eachDailyNews
+                  }
+                >
+                  <div style={{ width: "40%", height: "100%" }}>
                     <img
                       src="http://moj.gov.kh/files/user-folder/2020/07/022/001/017_220720_MOJ_KH.jpg"
                       alt=""
-                      style={{ height: "100%" }}
+                      style={{ height: "100%", width: "100%" }}
                     />
                   </div>
                   <div
-                    className="each-daily-news-info py-lg-1 pl-2"
-                    style={{ width: "60% !important" }}
+                    className={"py-lg-1 pl-2 " + styles.eachDailyNewsInfo}
+                    style={{ width: "60%" }}
                   >
-                    <h1 className="each-daily-news-info-title">
+                    <h1 className={styles.eachDailyNewsInfoTitle}>
                       <Link>
                         ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
                         និងជាអនុប្រធានអាជ្ញាធរជាតិប្រយុទ្ធប្រឆាំងគ្រឿងញៀនអញ្ជើញ...
                       </Link>
                     </h1>
-                    <p className="each-daily-news-info-date">
+                    <p className={styles.eachDailyNewsInfoDate}>
                       ថ្ងៃទី២៤ ខែកក្កដា ឆ្នាំ២០២០
                     </p>
                   </div>
                 </div>
-                <div className="each-daily-news col-md-6 col-12 py-4 px-2  m-0">
-                  <div
-                    className="each-daily-news-thumbnail"
-                    style={{ width: "40% !important", height: "100%" }}
-                  >
+
+                <div
+                  className={
+                    "col-md-6 col-12 py-4 px-2 m-0 " + styles.eachDailyNews
+                  }
+                >
+                  <div style={{ width: "40%", height: "100%" }}>
                     <img
                       src="http://moj.gov.kh/files/user-folder/2020/07/023/001/001_230720_MOJ_KH.jpg"
                       alt=""
-                      style={{ height: "100%" }}
+                      style={{ height: "100%", width: "100%" }}
                     />
                   </div>
                   <div
-                    className="each-daily-news-info py-lg-1 pl-2"
-                    style={{ width: "60% !important" }}
+                    className={"py-lg-1 pl-2 " + styles.eachDailyNewsInfo}
+                    style={{ width: "60%" }}
                   >
-                    <h1 className="each-daily-news-info-title">
+                    <h1 className={styles.eachDailyNewsInfoTitle}>
                       <Link>
                         ឯកឧត្តម ជិន ម៉ាលីន រដ្ឋលេខាធិការក្រសួងយុត្តិធម៌
                         បានដឹកនាំក្រុមការងារបច្ចេកទេសរៀបចំ...
                       </Link>
                     </h1>
-                    <p className="each-daily-news-info-date">
+                    <p className={styles.eachDailyNewsInfoDate}>
                       ថ្ងៃទី២៣ ខែកក្កដា ឆ្នាំ២០២០
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-
             {/* Annoucements */}
-            <div className="annoucements-container mb-2">
-              <div className="title mb-1 p-1 px-2 pt-2">
+            <div className={"mb-2 " + styles.annoucementsContainer}>
+              <div
+                className={
+                  "mb-1 p-1 px-2 pt-2 " + styles.annoucementsContainerTitle
+                }
+              >
                 សេចក្ដីជូនដំណឹង
                 <span className="more">
                   <Link style={{ textDecoration: "none", color: "inherit" }}>
@@ -516,8 +595,8 @@ export class index extends Component {
                   </Link>
                 </span>
               </div>
-              <div className="annoucements row px-3">
-                <div className="announcement col-md-6 col-12 py-4">
+              <div className={"row px-3 " + styles.announcements}>
+                <div className={"col-md-6 col-12 py-4 " + styles.announcement}>
                   <div style={{ marginTop: "-2px" }}>
                     <svg
                       width="1em"
@@ -545,7 +624,7 @@ export class index extends Component {
                     </Link>
                   </div>
                 </div>
-                <div className="announcement col-md-6 col-12 py-4">
+                <div className={"col-md-6 col-12 py-4 " + styles.announcement}>
                   <div style={{ marginTop: "-2px" }}>
                     <svg
                       width="1em"
@@ -574,7 +653,7 @@ export class index extends Component {
                   </div>
                 </div>
                 <hr className="w-100 m-0 d-none d-md-block" />
-                <div className="announcement col-md-6 col-12 py-4">
+                <div className={"col-md-6 col-12 py-4 " + styles.announcement}>
                   <div style={{ marginTop: "-2px" }}>
                     <svg
                       width="1em"
@@ -602,7 +681,7 @@ export class index extends Component {
                     </Link>
                   </div>
                 </div>
-                <div className="announcement col-md-6 col-12 py-4">
+                <div className={"col-md-6 col-12 py-4 " + styles.announcement}>
                   <div style={{ marginTop: "-2px" }}>
                     <svg
                       width="1em"
@@ -637,10 +716,20 @@ export class index extends Component {
           {/* Bottom Sections */}
           <div className="btm-section mb-3" style={{ clear: "both" }}>
             {/* Bottom Left */}
-            <div className="btm-left-section left-section mb-2 mb-sm-2">
-              <div className="sub-units-container">
-                <div className="title p-1 px-2 pt-2 mb-2">អង្គភាពក្រោមឱវាទ</div>
-                <div className="sub-units mt-1 pl-4">
+            <div
+              className={
+                styles.leftSection + " mb-2 mb-sm-2 " + styles.btmLeftSection
+              }
+            >
+              <div>
+                <div
+                  className={
+                    "p-1 px-2 pt-2 mb-2 " + styles.subUnitsContainerTitle
+                  }
+                >
+                  អង្គភាពក្រោមឱវាទ
+                </div>
+                <div className={"mt-1 pl-4 " + styles.subUnits}>
                   <div className="pr-2">
                     <img
                       src="http://moj.gov.kh/files/link_images/1561435465rajp.png"
@@ -658,11 +747,26 @@ export class index extends Component {
             </div>
 
             {/* Bottom Right */}
-            <div className="btm-right-section right-section mb-2 mb-sm-2">
+            <div
+              className={
+                styles.rightSection + " mb-2 mb-sm-2 " + styles.btmRightSection
+              }
+            >
               <div className="row m-0">
-                <div className="col-12 col-sm-6 p-0 social-media-container mb-2 mb-sm-0">
-                  <div className="title p-1 pl-2 mb-2 pt-2">បណ្ដាញសង្គម</div>
-                  <div className="social-media pt-3">
+                <div
+                  className={
+                    "col-12 col-sm-6 p-0 mb-2 mb-sm-0 " +
+                    styles.socialMediaContainer
+                  }
+                >
+                  <div
+                    className={
+                      "p-1 pl-2 mb-2 pt-2 " + styles.btmRightSectionTitle
+                    }
+                  >
+                    បណ្ដាញសង្គម
+                  </div>
+                  <div className={"pt-3 " + styles.socialMedia}>
                     <img
                       src={Facebook}
                       alt=""
@@ -688,8 +792,16 @@ export class index extends Component {
                     />
                   </div>
                 </div>
-                <div className="col-12 col-sm-6 p-0 contact-container">
-                  <div className="title p-1 pl-2 mb-2 pt-2">ទំនាក់ទំនង</div>
+                <div
+                  className={"col-12 col-sm-6 p-0 " + styles.contactContainer}
+                >
+                  <div
+                    className={
+                      "p-1 pl-2 mb-2 pt-2 " + styles.btmRightSectionTitle
+                    }
+                  >
+                    ទំនាក់ទំនង
+                  </div>
                   <div className="contact p-2 pt-2">
                     <p className="m-0">
                       លេខទូរស័ព្ទ : (+855) 23 216 322 , (+855) 23 217 841{" "}
