@@ -396,7 +396,7 @@ export class index extends Component {
                            </Link>
                         </div>
                         <div className={styles.activity}>
-                           <Link>
+                           <Link to="/meeting">
                               <img src={Activity4} alt="" />
                               <p>
                                  <span style={{ whiteSpace: "pre-line" }}>

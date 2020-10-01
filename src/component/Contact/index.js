@@ -51,7 +51,7 @@ export class index extends Component {
                   </div>
                </div>
                <div className="col-md-6 p-3">
-                  <img src={Ministry} className="img-fluid" />
+                  <img atl="imageMinistryPlace" src={Ministry} className="img-fluid" />
                </div>
             </div>
 
@@ -126,7 +126,7 @@ export class index extends Component {
                               frameborder="0"
                               style={{ width: "100%" }}
                               height="390"
-                              src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ4Scm2TVRCTERlYNzc7x2fvA&key=AIzaSyD4j2M6KG6VoR0XICDghaj8YkqCQuFan1s&zoom=16"
+                              src={`https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ4Scm2TVRCTERlYNzc7x2fvA&key=AIzaSyD4j2M6KG6VoR0XICDghaj8YkqCQuFan1s&zoom=16`}
                               allowfullscreen
                            ></iframe>
                         </div>
@@ -134,18 +134,18 @@ export class index extends Component {
                      <div className="col-12 col-sm-6 p-0 mb-2 mb-sm-0 w-100 mx-auto">
                         <div className="social-media w-75 mx-auto pt-3 d-flex justify-content-around  ">
                            <img
+                           alt="facebookIcon"
                               src={Facebook}
-                              alt=""
                               style={{ width: "40px", height: "40px" }}
                            />
                            <img
                               src={Youtube}
-                              alt=""
+                              alt="youtubeIcon"
                               style={{ width: "40px", height: "40px" }}
                            />
                            <img
                               src={Telegram}
-                              alt=""
+                              alt="telegramIcon"
                               style={{ width: "40px", height: "40px" }}
                            />
                         </div>
