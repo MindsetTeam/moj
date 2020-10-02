@@ -1,0 +1,59 @@
+.previousMinisters {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.previousMinisters .contentHeader {
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 2px solid #e53e3e;
+  color: #e53e3e;
+  background-color: #fff;
+  font-size: 20px;
+}
+
+.previousMinisters .contentBody {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fff;
+  padding-bottom: 20px;
+}
+
+.previousMinisters .ministersList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.previousMinisters .ministersListContainer {
+  margin-top: 15px;
+}
+
+.previousMinisters .ministersListContainer h1 {
+  font-size: 20px;
+  color: #e53e3e;
+}
+
+.previousMinisters .minister {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 50%;
+}
+
+.previousMinisters .ministerInfoTitle {
+  font-size: 17px;
+  line-height: 23px;
+  word-wrap: break-word;
+}
+
+.previousMinisters .ministerInfoTitle span,
+.previousMinisters .ministerInfoTitle a {
+  color: #000;
+  text-decoration: none;
+}
+
+.previousMinisters .ministerInfoDate {
+  font-size: 17px;
+}

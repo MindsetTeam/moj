@@ -1,0 +1,116 @@
+.galleryContainer {
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.galleryContainer p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.filter {
+  background-color: #fff;
+}
+
+.category {
+  margin-top: 3px;
+  background-color: #fff;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.category p {
+  color: #e53e3e;
+  font-weight: 600;
+  border-right: 2px solid #e53e3e;
+  padding-right: 20px;
+  margin-right: 20px;
+}
+
+.category div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentBody {
+  margin-top: 3px;
+}
+
+.galleries {
+  padding-top: 20px;
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Card */
+.card {
+  height: 340px;
+  width: 320px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.card img {
+  height: 200px;
+  width: 100%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.cardBody {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  height: 140px;
+  background-color: #fdf0f0;
+}
+
+.cardBody p {
+  height: 70%;
+}
+
+.cardBodyInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: #e53e3e;
+  height: 25%;
+}
+
+.cardBodyInfo p {
+  background-color: #eed;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 20px;
+}
+
+/* Media Query */
+
+/* Small to 1000px */
+@media only screen and (max-width: 1000px) {
+}
+
+/* LG break */
+@media only screen and (max-width: 991px) {
+}
+
+/* <800px */
+@media only screen and (max-width: 800px) {
+}
+
+/* Md breakpoint */
+@media only screen and (max-width: 767px) {
+}
+
+/* Medium Screen Device*/
+@media only screen and (max-width: 600px) {
+}
+
+/* Small Screen Device */
+@media only screen and (max-width: 350px) {
+}

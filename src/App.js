@@ -8,18 +8,19 @@ import Loading from "./component/Shared/Loading";
 // About Component
 const About = React.lazy(() => import("./component/About/index"));
 const WelcomeMessage = React.lazy(() =>
-  import("./component/About/welcomeMessage")
+  import("./component/About/welcome-message/index")
 );
 const MinistryBiography = React.lazy(() =>
-  import("./component/About/ministryBiography")
+  import("./component/About/ministry-biography/index")
 );
 const PreviousMinisters = React.lazy(() =>
-  import("./component/About/previousMinisters")
+  import("./component/About/previous-minister/index")
 );
 const MeetingEvents = React.lazy(() => import("./component/Meetings/index"));
 
 // Home Component
 const Home = React.lazy(() => import("./component/Home/index"));
+const Gallery = React.lazy(() => import("./component/Home/gallery/index"));
 
 // Contact Component
 const Contact = React.lazy(() => import("./component/Contact/index"));
@@ -47,11 +48,14 @@ function App() {
             <Route path="/previous-ministers">
               <PreviousMinisters></PreviousMinisters>
             </Route>
+
+            {/* Root Route */}
             <Route path="/meeting">
               <MeetingEvents />
             </Route>
-
-            {/* Root Route */}
+            <Route path="/gallery">
+              <Gallery></Gallery>
+            </Route>
             <Route path="/">
               <Home />
             </Route>

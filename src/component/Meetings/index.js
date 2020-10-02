@@ -4,7 +4,6 @@ import khmerConverter from "../../utils/convertToKhmer";
 import Loading from "../Shared/Loading";
 import DisplayDate from "../Shared/DisplayDate";
 
-
 export class MeetingAll extends Component {
   state = {
     meeting: [],
@@ -262,8 +261,10 @@ export class MeetingAll extends Component {
                                   <span style={{ fontWeight: "bold" }}>
                                     កាលបរិចេ្ឆទ៖
                                   </span>{" "}
-                                
-                                  {khmerConverter.dateToKhmer(v.date).fullKhmerDateTime}
+                                  {
+                                    khmerConverter.dateToKhmer(v.date)
+                                      .fullKhmerDateTime
+                                  }
                                 </h4>
                                 <hr />
                                 <h4>
