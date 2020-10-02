@@ -11,8 +11,13 @@ function galleryCard() {
           sint. Ipsum duis occaecat amet ullamco sit. Et voluptate anim Lorem
         </p>
         <div className={styles.cardBodyInfo}>
-          <p>1-04-2020</p>
-          <p>5 photos</p>
+          <p>
+            <i class="fa fa-calendar-alt pt-1 mr-1"></i>1-04-2020
+          </p>
+          <p>
+            {" "}
+            <i class="fa fa-images pt-1 mr-1"></i>5 photos
+          </p>
         </div>
       </div>
     </div>

@@ -10,6 +10,8 @@
 
 .filter {
   background-color: #fff;
+  padding: 5px;
+  overflow: hidden;
 }
 
 .category {
@@ -40,17 +42,21 @@
 }
 
 .galleries {
+  padding-left: 15px;
+  padding-right: 15px;
   padding-top: 20px;
+  margin-bottom: 10px;
   background-color: #fff;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Card */
 .card {
   height: 340px;
-  width: 320px;
+  width: 330px;
   background-color: #fff;
   margin-bottom: 20px;
 }
@@ -89,10 +95,99 @@
   border-radius: 20px;
 }
 
+/* Content Bottom */
+.leftSection {
+  width: 28%;
+  float: left;
+}
+
+.btmLeftSection {
+  height: 130px;
+  background-color: #fff;
+}
+
+.subUnitsContainerTitle {
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  color: #888;
+  border-bottom: 1px solid #ddd;
+}
+
+.subUnits {
+  display: flex;
+  align-items: center;
+}
+
+.rightSection {
+  width: 71%;
+  float: right;
+}
+
+.btmRightSection {
+  height: 130px;
+}
+
+.socialMediaContainer {
+  height: 130px;
+  border-right: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.btmRightSectionTitle {
+  color: #e53e3e;
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: 1px solid #ddd;
+}
+
+.socialMedia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contactContainer {
+  height: 130px;
+  background-color: #fff;
+  font-size: 15px;
+}
 /* Media Query */
 
 /* Small to 1000px */
 @media only screen and (max-width: 1000px) {
+  .leftSection {
+    width: 100%;
+  }
+
+  .rightSection {
+    width: 100%;
+  }
+
+  .btmRightSection {
+    height: 170px;
+  }
+
+  .subUnits {
+    justify-content: center;
+  }
+
+  .btmLeftSection {
+    height: 130px;
+  }
+
+  .socialMediaContainer,
+  .contactContainer {
+    height: 170px;
+  }
+
+  .socialMedia {
+    padding-top: 25px !important;
+  }
+
+  .contact {
+    padding-top: 20px !important;
+  }
 }
 
 /* LG break */
@@ -101,16 +196,61 @@
 
 /* <800px */
 @media only screen and (max-width: 800px) {
+  .contact {
+    padding-top: 0px !important;
+  }
 }
 
 /* Md breakpoint */
 @media only screen and (max-width: 767px) {
+  .filter div:first-child {
+    text-align: center;
+    padding-bottom: 5px;
+  }
+
+  .filter div:last-child {
+    padding-left: 20px;
+    padding-top: 5px;
+  }
 }
 
 /* Medium Screen Device*/
 @media only screen and (max-width: 600px) {
+  .btmRightSection {
+    height: 230px;
+  }
+
+  .btmLeftSection {
+    height: 130px;
+  }
+
+  .socialMediaContainer,
+  .contactContainer {
+    height: 110px;
+  }
+
+  .socialMediaContainer {
+    margin-bottom: 10px !important;
+  }
+
+  .contact {
+    padding-left: 15px !important;
+    font-size: 14px;
+  }
+
+  .socialMedia,
+  .contact {
+    padding-top: 5px !important;
+  }
 }
 
 /* Small Screen Device */
 @media only screen and (max-width: 350px) {
+  .btmRightSection {
+    height: 260px;
+  }
+
+  .contactContainer {
+    height: 140px;
+  }
 }

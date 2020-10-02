@@ -31,20 +31,20 @@ body {
 /* Serach */
 .searchbox {
   transition: border 0.2s linear;
-  font-size: 12px;
+  font-size: 15px;
   width: 50%;
   background: #f5f8fa;
   color: #000;
   padding: 10px;
-  height: 22px;
-  border: 1px solid #e6ecf0;
+  height: 20px;
+  border: 2px solid #e6ecf0;
   border-radius: 50px;
   outline: none;
   width: 250px;
 }
 
 .searchbox::placeholder {
-  font-size: 11px;
+  font-size: 14px;
   color: #e53e3e;
 }
 
@@ -62,7 +62,7 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   position: absolute;
-  top: 6px;
+  top: 4px;
   right: 7px;
   outline: none;
   border: none;
@@ -104,8 +104,7 @@ body {
   color: #e53e3e !important;
 }
 
-
-.dropdown:hover>.dropdown-menu {
+.dropdown:hover > .dropdown-menu {
   display: block;
 }
 
@@ -172,13 +171,16 @@ footer p {
 }
 
 /* <800px */
-@media only screen and (max-width: 800px) {}
+@media only screen and (max-width: 800px) {
+}
 
 /* Md breakpoint */
-@media only screen and (max-width: 767px) {}
+@media only screen and (max-width: 767px) {
+}
 
 /* Medium Screen Device*/
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+}
 
 /* Small Screen Device */
 @media only screen and (max-width: 350px) {
