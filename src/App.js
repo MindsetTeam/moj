@@ -24,6 +24,12 @@ const Gallery = React.lazy(() => import("./component/Home/gallery/index"));
 
 // Contact Component
 const Contact = React.lazy(() => import("./component/Contact/index"));
+// News Component
+const News = React.lazy(() => import("./component/News/index.js"));
+// Single News Component
+const SingleNews = React.lazy(() =>
+  import("./component/News/SingleNews/index")
+);
 
 function App() {
   return (
@@ -55,6 +61,12 @@ function App() {
             </Route>
             <Route path="/gallery">
               <Gallery></Gallery>
+            </Route>
+            <Route path="/news/:id">
+              <SingleNews />
+            </Route>
+            <Route path="/news">
+              <News />
             </Route>
             <Route path="/">
               <Home />

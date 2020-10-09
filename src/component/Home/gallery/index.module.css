@@ -60,38 +60,6 @@
   align-items: center;
 }
 
-/* Pagination */
-.paginationContainer {
-  display: flex;
-  justify-content: center;
-  margin-top: 3px;
-  background-color: #fff;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-.pagination > li {
-  margin-right: 10px;
-  color: #e53e3e;
-}
-
-.pagination > li > a {
-  padding-left: 5px;
-  padding-right: 5px;
-  outline: none;
-  font-weight: bold;
-}
-
-.active {
-  border: 1px solid #e53e3e;
-  background-color: #e53e3e;
-  color: #fff !important;
-  border-radius: 20px;
-}
-
-.pagination {
-  margin-bottom: 0px !important;
-}
 
 /* Card */
 .card {
@@ -143,16 +111,13 @@
 /* Media Query */
 
 /* Small to 1000px */
-@media only screen and (max-width: 1000px) {
-}
+@media only screen and (max-width: 1000px) {}
 
 /* LG break */
-@media only screen and (max-width: 991px) {
-}
+@media only screen and (max-width: 991px) {}
 
 /* <800px */
-@media only screen and (max-width: 800px) {
-}
+@media only screen and (max-width: 800px) {}
 
 /* Md breakpoint */
 @media only screen and (max-width: 767px) {
@@ -168,9 +133,7 @@
 }
 
 /* Medium Screen Device*/
-@media only screen and (max-width: 600px) {
-}
+@media only screen and (max-width: 600px) {}
 
 /* Small Screen Device */
-@media only screen and (max-width: 350px) {
-}
+@media only screen and (max-width: 350px) {}
