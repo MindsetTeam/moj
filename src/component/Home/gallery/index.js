@@ -52,12 +52,12 @@ export class index extends Component {
         {/* End Header */}
         <div className={styles.contentBody}>
           <div className={styles.galleries + " m-0"}>
-            <GalleryCard></GalleryCard>
-            <GalleryCard></GalleryCard>
-            <GalleryCard></GalleryCard>
-            <GalleryCard></GalleryCard>
-            <GalleryCard></GalleryCard>
-            <GalleryCard></GalleryCard>
+            <GalleryCard title="hi1" id="1"></GalleryCard>
+            <GalleryCard title="hi2" id="2"></GalleryCard>
+            <GalleryCard title="hi3" id="3"></GalleryCard>
+            <GalleryCard title="hi4" id="4"></GalleryCard>
+            <GalleryCard title="hi5" id="5"></GalleryCard>
+            <GalleryCard title="hi6" id="6"></GalleryCard>
           </div>
           <div className={styles.paginationContainer}>
             <ReactPaginate
