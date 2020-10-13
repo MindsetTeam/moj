@@ -1,10 +1,15 @@
 import React from "react";
 import styles from "./index.module.css";
+import Slider from "../../Shared/Slider";
 
 function galleryCard(props) {
   return (
     <div className={styles.card}>
-      <div data-toggle="modal" data-target={"#exampleModalCenter" + props.id}>
+      <div
+        data-toggle="modal"
+        data-target={"#exampleModalCenter" + props.id}
+        data-backdrop="static"
+      >
         <img
           className={styles.thumbnail}
           src="https://images.unsplash.com/photo-1519098901909-b1553a1190af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
@@ -52,18 +57,21 @@ function galleryCard(props) {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body text-center">
+            <div class="modal-body p-0">
               <p>{props.id}</p>
               <img
                 className={styles.mainImg}
                 src={"https://robohash.org/" + props.id}
               ></img>
-              <p>
+              <p className="text-center">
                 Laborum ipsum laboris Lorem in incididunt nulla culpa nulla
                 cillum. Mollit dolor sit nostrud dolore. Cillum minim officia ea
                 ad enim dolore veniam non. Nulla adipisicing est culpa
                 consectetur.
               </p>
+              <div>
+                <Slider></Slider>
+              </div>
             </div>
           </div>
         </div>

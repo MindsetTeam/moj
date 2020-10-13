@@ -7,35 +7,67 @@ const MutipleSlidesPerView = () => {
     spaceBetween: 30,
 
     pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
+      el: ".swiper-pagination",
+      type: "bullets",
+      clickable: true,
     },
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
   };
 
   return (
-    <div>
+    <div style={{ width: "100%", margin: "auto" }}>
       React id swiper
       <button>Toggle Swiping</button>
       Should swipe:
       <ReactIdSwiper {...params}>
         <div
-          className="slide1"
+          className="slide1 "
           style={{
-            height: "300px",
+            height: "150px",
             background: "lightblue",
           }}
         >
           Slide 1
         </div>
-        <div className="slide2">Slide 2</div>
-        <div>Slide 3</div>
-        <div>Slide 4</div>
-        <div>Slide 5</div>
+        <div
+          className="slide1 "
+          style={{
+            height: "150px",
+            background: "lightblue",
+          }}
+        >
+          Slide 2
+        </div>
+        <div
+          className="slide1 "
+          style={{
+            height: "150px",
+            background: "lightblue",
+          }}
+        >
+          Slide 3
+        </div>
+        <div
+          className="slide1 "
+          style={{
+            height: "150px",
+            background: "lightblue",
+          }}
+        >
+          Slide 4
+        </div>
+        <div
+          className="slide1 "
+          style={{
+            height: "150px",
+            background: "lightblue",
+          }}
+        >
+          Slide 5
+        </div>
       </ReactIdSwiper>
     </div>
   );
