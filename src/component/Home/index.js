@@ -337,7 +337,7 @@ export class index extends Component {
                     <img src={Activity1} alt="" />
                     <p>
                       <span style={{ whiteSpace: "pre-line" }}>
-                        ពាក្យស្នើសុំព្រឺតិ្តបត្រ ថ្កោលទោស
+                        ពាក្យស្នើសុំព្រឺតិ្តបត្រ {"\n"}ថ្កោលទោស
                       </span>
                     </p>
                   </Link>
@@ -347,7 +347,7 @@ export class index extends Component {
                     <img src={Activity2} alt="" />
                     <p>
                       <span style={{ whiteSpace: "pre-line" }}>
-                        យុទ្ធការដោះស្រាយ ការកកស្ទះសំណុំរឿង
+                        រចនាសម្ព័ន្ធ{"\n"}ក្រសួង
                       </span>
                     </p>
                   </Link>
@@ -357,7 +357,7 @@ export class index extends Component {
                     <img src={Activity3} alt="" />
                     <p>
                       <span style={{ whiteSpace: "pre-line" }}>
-                        លេខាធិការដ្ឋានសាលា ដំបូងរាជធានី-ខេត្ត
+                        លេខាធិការដ្ឋានសាលា {"\n"}ដំបូងរាជធានី-ខេត្ត
                       </span>
                     </p>
                   </Link>
@@ -367,7 +367,7 @@ export class index extends Component {
                     <img src={Activity4} alt="" />
                     <p>
                       <span style={{ whiteSpace: "pre-line" }}>
-                        សកម្មភាព ក្រសួងយុត្តិធម៌
+                        កម្មវិធីប្រជុំ {"\n"} ក្រសួងយុត្តិធម៌
                       </span>
                     </p>
                   </Link>
@@ -377,7 +377,7 @@ export class index extends Component {
                     <img src={Activity5} alt="" />
                     <p>
                       <span style={{ whiteSpace: "pre-line" }}>
-                        ឯកសារ បោះពុម្ភផ្សាយ
+                        ឯកសារ {"\n"}បោះពុម្ភផ្សាយ
                       </span>
                     </p>
                   </Link>
@@ -387,7 +387,7 @@ export class index extends Component {
                     <img src={Activity6} alt="" />
                     <p>
                       <span style={{ whiteSpace: "pre-line" }}>
-                        បណ្ណាល័យ រូបភាព-វីដេអូ
+                        បណ្ណាល័យ {"\n"}រូបភាព-វីដេអូ
                       </span>
                     </p>
                   </Link>
