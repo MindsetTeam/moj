@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../home.css";
 import "../main.css";
 import Slider from "../../Shared/Slider";
@@ -7,8 +7,19 @@ import Activity1 from "../../../asset/activity1.png";
 import Activity2 from "../../../asset/activity2.png";
 import Activity3 from "../../../asset/activity3.png";
 import Activity4 from "../../../asset/activity4.png";
+import extractionHtml from "../../../utils/extractionHTML";
 
-export default function index() {
+export default function () {
+  const [html, setHtml] = useState(null);
+  useEffect(async () => {
+    const html = await fetch(
+      "http://localhost/wordpress/wp-json/wp/v2/news"
+    ).then((res) => {
+      return res.json();
+    });
+    setHtml(html[0]);
+  }, []);
+
   return (
     <div className="container">
       <div className="row mt-2">
@@ -33,32 +44,25 @@ export default function index() {
                   className="latest-news-info-title text-danger"
                   style={{ fontSize: "1.4em" }}
                 >
-                  ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
-                  អញ្ជើញចូលរួមជាអធិបតីក្នុងពិធីប្រកាសតែងតាំង
-                  និងចូលកាន់មុខតំណែងព្រះរាជអាជ្ញានៃអយ្យការអមសាលាដំបូងខេត្តកំពង់ចាម
+                  {html?.title.rendered}
                 </h1>
                 <div className="latest-news-thumbnail pb-lg-3 pt-lg-2">
                   <div
                     style={{
                       backgroundImage:
-                        "url(http://www.moj.gov.kh/files/user-folder/2020/07/028/002/002_280720_MOJ_KH.jpg)",
+                        `url(${html?.acf.main_image.url})`,
                       width: "100%",
                       height: "400px",
                     }}
                     className="py-1"
                   ></div>
                 </div>
-                <p className="latest-news-info-description pt-2 pt-sm-0">
-                  នៅរសៀលថ្ងៃអង្គារ ៨កើត ខែស្រាពណ៍ ឆ្នាំជូត ទោស័ក ព.ស.២៥៦៤
-                  ត្រូវនឹងថ្ងៃទី២៨ ខែកក្កដា ឆ្នាំ២០២០ នេះ ឯកឧត្តម កើត រិទ្ធ
-                  រដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌បានអញ្ជើញជាអធិបតីដ៏ខ្ពង់ខ្ពស់
-                  នៅរសៀលថ្ងៃអង្គារ ៨កើត ខែស្រាពណ៍ ឆ្នាំជូត ទោស័ក ព.ស.២៥៦៤
-                  ត្រូវនឹងថ្ងៃទី២៨ ខែកក្កដា ឆ្នាំ២០២០ នេះ ឯកឧត្តម កើត រិទ្ធ
-                  រដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌បានអញ្ជើញជាអធិបតីដ៏ខ្ពង់ខ្ព
-                  នៅរសៀលថ្ងៃអង្គារ ៨កើត ខែស្រាពណ៍ ឆ្នាំជូត ទោស័ក ព.ស.២៥៦៤
-                  ត្រូវនឹងថ្ងៃទី២៨ ខែកក្កដា ឆ្នាំ២០២០ នេះ ឯកឧត្តម កើត រិទ្ធ
-                  រដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌បានអញ្ជើញជាអធិបតីដ៏ខ្ពង់ខ្ព
-                </p>
+                <div
+                  className="latest-news-info-description pt-2 pt-sm-0"
+                  dangerouslySetInnerHTML={
+                    extractionHtml(html?.content.rendered).pTag
+                  }
+                ></div>
 
                 <div className="row">
                   {/* <Slider /> */}
@@ -88,12 +92,8 @@ export default function index() {
               </div>
             </div>
             <div className="container bg-white">
-              {" "}
-              <Slider></Slider>
+              <Slider imgs={extractionHtml(html?.content.rendered).imgTag}></Slider>
             </div>
-
-
-            
           </div>
 
           <div className="daily-news-container my-2">
