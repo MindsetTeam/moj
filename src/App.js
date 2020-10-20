@@ -62,10 +62,10 @@ function App() {
             <Route path="/gallery">
               <Gallery></Gallery>
             </Route>
-            <Route path="/news/:id">
+            <Route path="/news-event/:id">
               <SingleNews />
             </Route>
-            <Route path="/news">
+            <Route path="/news/:types">
               <News />
             </Route>
             <Route path="/">

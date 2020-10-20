@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, useLocation, Link } from "react-router-dom";
 import "./home.css";
 import "./main.css";
+
+import Paginate from "../Shared/Pagination";
+import Loading from "../Shared/Loading";
+import extractionHtml from "../../utils/extractionHTML";
+import truncateString from "../../utils/truncateText";
+import convertToKhmer from "../../utils/convertToKhmer";
 
 import Activity1 from "../../asset/activity1.png";
 import Activity2 from "../../asset/activity2.png";
@@ -9,249 +16,125 @@ import Activity4 from "../../asset/activity4.png";
 import Activity5 from "../../asset/activity5.png";
 import Activity6 from "../../asset/activity6.png";
 
-export default function index() {
+const convertISODatetoKhmer = (date) => {
+  const dateKh = convertToKhmer.dateToKhmer(date);
+  return `ថ្ងៃទី${dateKh.dateNum} ខែ${dateKh.month} ឆ្នាំ${dateKh.year}`;
+};
+
+export default function (props) {
+  const { types } = useParams();
+  const [pageNum, setPageNum] = useState(1);
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [totalPage, setTotalPage] = useState(0);
+  let location = useLocation();
+  console.log(location);
+  useEffect(() => {
+    setLoading(true);
+    fetch(
+      `http://localhost/wordpress/wp-json/wp/v2/news?_fields=id,date,title,content,acf${
+        types == "all" ? "" : `&categories=${location.state.id}`
+      }&per_page=5&page=` + pageNum
+    )
+      .then((res) => {
+        let totalPage = res.headers.get("x-wp-totalpages");
+        setTotalPage(totalPage);
+        return res.json();
+      })
+      .then((news) => {
+        setNews(news);
+        setLoading(false);
+      });
+  }, [pageNum, location]);
+  const changePageNum = (num) => {
+    setPageNum(num.selected + 1);
+  };
   return (
     <div className="container">
       <div className="row mt-2">
         <div className="col-lg-9">
           <div className="latest-news-container">
-            <div className="title mb-1 p-1 px-2 pt-2">ព័ត៌មានថ្មីៗ</div>
-            <div className="latest-news row">
-              <div className="latest-news-info col-lg-7 pt-0 pt-md-0 pt-md-3 px-4">
-                <h1 className="latest-news-info-title">
-                  ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
-                  អញ្ជើញចូលរួមជាអធិបតីក្នុងពិធីប្រកាសតែងតាំង
-                  និងចូលកាន់មុខតំណែងព្រះរាជអាជ្ញានៃអយ្យការអមសាលាដំបូងខេត្តកំពង់ចាម
-                </h1>
-                <p className=" latest-news-info-description">
-                  នៅរសៀលថ្ងៃអង្គារ ៨កើត ខែស្រាពណ៍ ឆ្នាំជូត ទោស័ក ព.ស.២៥៦៤
-                  ត្រូវនឹងថ្ងៃទី២៨ ខែកក្កដា ឆ្នាំ២០២០ នេះ ឯកឧត្តម កើត រិទ្ធ
-                  រដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌បានអញ្ជើញជាអធិបតីដ៏ខ្ពង់ខ្ពស់
-                </p>
-                <p className="latest-news-info-date">
-                  ថ្ងៃទី០៥ ខែមិថុនា ឆ្នាំ២០២០
-                </p>
-              </div>
-              <div className="latest-news-thumbnail col-lg-5 p-0  pt-lg-2 pr-lg-2 ">
-                <img
-                  src="http://www.moj.gov.kh/files/user-folder/2020/07/028/002/002_280720_MOJ_KH.jpg"
-                  alt=""
-                  className="img-fluid"
-                  style={{
-                    paddingBottom: "0px !important",
-                  }}
-                />
-              </div>
-            </div>
+            <div className="title mb-1 p-1 px-2 pt-2">ព័ត៌មាននិងឯកសារ</div>
+            {loading ? (
+              <Loading />
+            ) : !(news.length > 0) ? (
+              <h1>News not inserted</h1>
+            ) : (
+              <Link to={`/news-event/${news[0].id}`}>
+                <div className="latest-news row">
+                  <div className="latest-news-info col-lg-7 pt-0 pt-md-0 pt-md-3 px-4">
+                    <h1 className="latest-news-info-title">
+                      {truncateString(news[0].title.rendered, 130)}
+                    </h1>
+                    <p className=" latest-news-info-description">
+                      {truncateString(
+                        extractionHtml(news[0].content.rendered).pValue[0],
+                        290
+                      )}
+                    </p>
+                    <p className="latest-news-info-date">
+                      {convertISODatetoKhmer(news[0].date)}
+                    </p>
+                  </div>
+                  <div className="latest-news-thumbnail col-lg-5 p-0  pt-lg-2 pr-lg-2 ">
+                    <img
+                      src={news[0].acf.image.sizes["post-thumbnail"]}
+                      alt=""
+                      className="img-fluid"
+                      style={{
+                        paddingBottom: "0px",
+                      }}
+                    />
+                  </div>
+                </div>
+              </Link>
+            )}
           </div>
           <div className="daily-news-container my-2">
             <div className="daily-news row px-3">
-              <div className="each-daily-news col-12 py-4 px-2 m-0">
-                <div
-                  className="each-daily-news-thumbnail"
-                  style={{
-                    width: "30%",
-                    height: "100%",
-                  }}
-                >
-                  <img
-                    src="http://www.moj.gov.kh/files/events/1595733428003_240720_MOJ_KH.jpg"
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  />
-                </div>
-                <div
-                  className="each-daily-news-info py-lg-1 pl-2"
-                  style={{ width: "65%" }}
-                >
-                  <h1 className="each-daily-news-info-title">
-                    <a href="#">
-                      ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
-                      អញ្ជើញចូលរួមជាអធិបតីក្នុងពិធីប្រកាសផ្ទេរ
-                      និងចូលកាន់មុខតំណែង...
-                    </a>
-                  </h1>
-                  <p className="each-daily-news-info-date pt-2">
-                    ថ្ងៃទី២៦ ខែកក្កដា ឆ្នាំ២០២០
-                  </p>
-                </div>
-              </div>
-              <hr className="w-100 m-0 d-none d-md-block" />
-              <div className="each-daily-news col-12 py-4 px-2 m-0">
-                <div
-                  className="each-daily-news-thumbnail"
-                  style={{
-                    width: "30%",
-                    height: "100%",
-                  }}
-                >
-                  <img
-                    src="http://www.moj.gov.kh/files/events/1595733428003_240720_MOJ_KH.jpg"
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  />
-                </div>
-                <div
-                  className="each-daily-news-info py-lg-1 pl-2"
-                  style={{ width: "65%" }}
-                >
-                  <h1 className="each-daily-news-info-title">
-                    <a href="#">
-                      ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
-                      អញ្ជើញចូលរួមជាអធិបតីក្នុងពិធីប្រកាសផ្ទេរ
-                      និងចូលកាន់មុខតំណែង...
-                    </a>
-                  </h1>
-                  <p className="each-daily-news-info-date pt-2">
-                    ថ្ងៃទី២៦ ខែកក្កដា ឆ្នាំ២០២០
-                  </p>
-                </div>
-              </div>
-              <hr className="w-100 m-0 d-none d-md-block" />
-              <div className="each-daily-news col-12 py-4 px-2 m-0">
-                <div
-                  className="each-daily-news-thumbnail"
-                  style={{
-                    width: "30%",
-                    height: "100%",
-                  }}
-                >
-                  <img
-                    src="http://www.moj.gov.kh/files/events/1595733428003_240720_MOJ_KH.jpg"
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  />
-                </div>
-                <div
-                  className="each-daily-news-info py-lg-1 pl-2"
-                  style={{ width: "65%" }}
-                >
-                  <h1 className="each-daily-news-info-title">
-                    <a href="#">
-                      ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
-                      អញ្ជើញចូលរួមជាអធិបតីក្នុងពិធីប្រកាសផ្ទេរ
-                      និងចូលកាន់មុខតំណែង...
-                    </a>
-                  </h1>
-                  <p className="each-daily-news-info-date pt-2">
-                    ថ្ងៃទី២៦ ខែកក្កដា ឆ្នាំ២០២០
-                  </p>
-                </div>
-              </div>
-              <hr className="w-100 m-0 d-none d-md-block" />
-              <div className="each-daily-news col-12 py-4 px-2 m-0">
-                <div
-                  className="each-daily-news-thumbnail"
-                  style={{
-                    width: "30%",
-                    height: "100%",
-                  }}
-                >
-                  <img
-                    src="http://www.moj.gov.kh/files/events/1595733428003_240720_MOJ_KH.jpg"
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  />
-                </div>
-                <div
-                  className="each-daily-news-info py-lg-1 pl-2"
-                  style={{ width: "65%" }}
-                >
-                  <h1 className="each-daily-news-info-title">
-                    <a href="#">
-                      ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
-                      អញ្ជើញចូលរួមជាអធិបតីក្នុងពិធីប្រកាសផ្ទេរ
-                      និងចូលកាន់មុខតំណែង...
-                    </a>
-                  </h1>
-                  <p className="each-daily-news-info-date pt-2">
-                    ថ្ងៃទី២៦ ខែកក្កដា ឆ្នាំ២០២០
-                  </p>
-                </div>
-              </div>
-
+              {news.length <= 1 || loading
+                ? null
+                : news.slice(1).map((v) => (
+                    <Link to={`/news-event/${v.id}`}>
+                      <div className="each-daily-news col-12 py-4 px-2 m-0">
+                        <div
+                          className="each-daily-news-thumbnail"
+                          style={{
+                            width: "30%",
+                            height: "100%",
+                          }}
+                        >
+                          <img
+                            src={v.acf.image.sizes.thumbnail}
+                            className="img-fluid"
+                            style={{
+                              width: "100%",
+                              maxHeight: "170px",
+                            }}
+                          />
+                        </div>
+                        <div
+                          className="each-daily-news-info py-lg-1 pl-2"
+                          style={{ width: "65%" }}
+                        >
+                          <h1 className="each-daily-news-info-title">
+                            <a href="#">
+                              {truncateString(v.title.rendered, 470)}
+                            </a>
+                          </h1>
+                          <p className="each-daily-news-info-date pt-2">
+                            {convertISODatetoKhmer(v.date)}
+                          </p>
+                        </div>
+                      </div>
+                      <hr className="w-100 m-0 d-none d-md-block" />
+                    </Link>
+                  ))}
               <div className="mx-auto">
-                <nav aria-label="Page navigation example">
-                  <ul className="pagination">
-                    <li className="page-item">
-                      <a
-                        className="page-link"
-                        href="#"
-                        aria-label="Previous"
-                        id="previouspage"
-                      >
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        1
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        2
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        3
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        4
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        5
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        6
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        7
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        8
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        9
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a
-                        className="page-link"
-                        href="#"
-                        aria-label="Next"
-                        id="nextpage"
-                      >
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
+                <Paginate
+                  pageCount={+totalPage}
+                  changePageNum={changePageNum}
+                />
               </div>
             </div>
           </div>

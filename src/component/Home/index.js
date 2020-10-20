@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import styles from "./home.module.css";
 import { Link } from "react-router-dom";
+import truncateString from "../../utils/truncateText";
+import extractionHtml from "../../utils/extractionHTML";
+import convertToKhmer from "../../utils/convertToKhmer";
 
 // Import assets
 import Activity1 from "../../asset/activity1.png";
@@ -17,8 +20,28 @@ export class index extends Component {
   constructor(props) {
     super(props);
     this.marqueeRef = React.createRef();
-    this.state = {};
+    this.state = {
+      featuredNews: [],
+      latestNews: [],
+    };
+    this.titleNews = [];
   }
+  async componentDidMount() {
+    const featuredNews = await fetch(
+      "http://localhost/wordpress/wp-json/wp/v2/news?_fields=id,date,acf,title&orderby=modified&featured_news=yes&per_page=18"
+    ).then((res) => res.json());
+    this.setState({ featuredNews });
+    const latestNews = await fetch(
+      "http://localhost/wordpress/wp-json/wp/v2/news?_fields=id,date,acf,title,content&per_page=5"
+    ).then((res) => res.json());
+    this.setState({ latestNews });
+  }
+
+  convertISODatetoKhmer(date) {
+    const dateKh = convertToKhmer.dateToKhmer(date);
+    return `ថ្ងៃទី${dateKh.dateNum} ខែ${dateKh.month} ឆ្នាំ${dateKh.year}`;
+  }
+
   render() {
     return (
       <div>
@@ -30,24 +53,26 @@ export class index extends Component {
           data-interval="3000"
         >
           <ol className={"carousel-indicators " + styles.carouselIndicators}>
-            <li
-              data-target="#carouselExampleIndicators"
-              data-slide-to="0"
-              className="active"
-            ></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+            {this.state.featuredNews.map((v, i) => {
+              this.titleNews.push({ id: v.id, title: v.title.rendered });
+              return (
+                <li
+                  data-target="#carouselExampleIndicators"
+                  data-slide-to={i}
+                  className={i === 0 ? "active" : ""}
+                ></li>
+              );
+            })}
           </ol>
           <div className="carousel-inner">
-            <div
+            {/* <div
               className={
+                "carousel-item " +
                 styles.carouselItem +
-                " carousel-item active " +
+                " active " +
                 styles.carouselItemActive
               }
-            >
+          >
               <div className="row">
                 <div
                   className={
@@ -80,144 +105,49 @@ export class index extends Component {
                   }}
                 ></div>
               </div>
-            </div>
-            <div className={"carousel-item " + styles.carouselItem}>
-              <div className="row">
-                <div
-                  className={
-                    "order-lg-1 order-2 " + styles.carouselLeftContainer
-                  }
-                >
-                  <div className="m-4">
-                    <h4 className={styles.newsTitle}>
-                      ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
-                      និងជាអនុប្រធានអាជ្ញាធរជាតិប្រយុទ្ធប្រឆាំងគ្រឿងញៀនអញ្ជើញចូលរួមជាអធិបតីក្នុងពិធីដុតបំផ្លាញគ្រឿងញៀន
-                      នៅស្វាយរៀង
-                    </h4>
-                    <p
-                      className={
-                        "px-1 px-md-2 mt-lg-4 " +
-                        styles.carouselLeftContainerDate
-                      }
-                    >
-                      ថ្ងៃទី៤ ខែសីហា ឆ្នាំ២០២០
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className={
-                    "order-1 order-lg-2 carousel-img " + styles.carouselImg
-                  }
-                  style={{
-                    backgroundImage:
-                      "url(http://moj.gov.kh/files/user-folder/2020/08/004/001/007_040820_MOJ_KH.jpg)",
-                  }}
-                ></div>
-              </div>
-            </div>
-            <div className={"carousel-item " + styles.carouselItem}>
-              <div className="row">
-                <div
-                  className={
-                    "order-lg-1 order-2 " + styles.carouselLeftContainer
-                  }
-                >
-                  <div className="m-4">
-                    <h4 className={styles.newsTitle}>
-                      ឯកឧត្តមរដ្ឋមន្ត្រី កើត រិទ្ធ
-                      អញ្ជើញជាអធិបតីក្នុងពិធីប្រកាសចូលកាន់មុខតំណែងជាផ្លូវការរបស់ប្រធានសាលាដំបូងខេត្តក្រចេះ
-                    </h4>
+            </div> */}
 
-                    <p
-                      className={
-                        "px-1 px-md-2 mt-lg-4 " +
-                        styles.carouselLeftContainerDate
-                      }
-                    >
-                      ថ្ងៃទី៣១ ខែកក្កដា ឆ្នាំ២០២០
-                    </p>
-                  </div>
-                </div>
+            {this.state.featuredNews.map((v, i) => {
+              return (
                 <div
                   className={
-                    "order-1 order-lg-2 carousel-img " + styles.carouselImg
-                  }
-                  style={{
-                    backgroundImage:
-                      "url(http://moj.gov.kh/files/user-folder/2020/07/031/001/003_310720_MOJ_KH.jpg)",
-                  }}
-                ></div>
-              </div>
-            </div>
-            <div className={"carousel-item " + styles.carouselItem}>
-              <div className="row">
-                <div
-                  className={
-                    "order-lg-1 order-2 " + styles.carouselLeftContainer
+                    "carousel-item " +
+                    styles.carouselItem +
+                    (i === 0 ? " active " + styles.carouselItemActive : "")
                   }
                 >
-                  <div className="m-4">
-                    <h4 className={styles.newsTitle}>
-                      ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
-                      បួងសួងសុំសេចក្តីសុខលើទ្រព្យសម្បត្តិថ្មីក្នុងវិស័យយុត្តិធម៌
-                      នាទឹកដីអង្គរខេត្តសៀមរាប
-                    </h4>
-                    <p
+                  <Link to={`/news-event/${v.id}`} className="row">
+                    <div
                       className={
-                        "px-1 px-md-2 mt-lg-4 " +
-                        styles.carouselLeftContainerDate
+                        "order-lg-1 order-2 " + styles.carouselLeftContainer
                       }
                     >
-                      ថ្ងៃទី២៨ ខែកក្កដា ឆ្នាំ២០២០
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className={
-                    "order-1 order-lg-2 carousel-img " + styles.carouselImg
-                  }
-                  style={{
-                    backgroundImage:
-                      "url(http://moj.gov.kh/files/user-folder/2020/07/028/001/001_280720_MOJ_KH.jpg)",
-                  }}
-                ></div>
-              </div>
-            </div>
-            <div className={"carousel-item " + styles.carouselItem}>
-              <div className="row">
-                <div
-                  className={
-                    "order-lg-1 order-2 " + styles.carouselLeftContainer
-                  }
-                >
-                  <div className="m-4">
-                    <h4 className={styles.newsTitle}>
-                      ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
-                      នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សីអញ្ជើញចូលរួមចែកកង់ចំនួន៣៥១​គ្រឿងដល់​សិស្សានុសិស្ស​នៃអនុវិទ្យាល័យតាណាក
-                    </h4>
-                    <p
+                      <div className="m-4">
+                        <h4 className={styles.newsTitle}>
+                          {truncateString(v.title.rendered, 310)}
+                        </h4>
+                        <p
+                          className={
+                            "px-1 px-md-2 mt-lg-4 " +
+                            styles.carouselLeftContainerDate
+                          }
+                        >
+                          {this.convertISODatetoKhmer(v.date)}
+                        </p>
+                      </div>
+                    </div>
+                    <div
                       className={
-                        "px-1 px-md-2 mt-lg-4 " +
-                        styles.carouselLeftContainerDate
+                        "order-1 order-lg-2 carousel-img " + styles.carouselImg
                       }
-                    >
-                      ថ្ងៃទី២៧ ខែកក្កដា ឆ្នាំ២០២០
-                    </p>
-                  </div>
+                      style={{
+                        backgroundImage: `url(${v.acf.image.url})`,
+                      }}
+                    ></div>
+                  </Link>
                 </div>
-                <div
-                  className={
-                    "order-1 order-lg-2 carousel-img " + styles.carouselImg
-                  }
-                  style={{
-                    backgroundImage:
-                      "url(http://moj-kh.herokuapp.com/Images/slideshow-5.jpg)",
-                    backgroundPosition: "0 0",
-                    backgroundSize: "cover",
-                  }}
-                ></div>
-              </div>
-            </div>
+              );
+            })}
           </div>
 
           {/* Marquee */}
@@ -234,18 +164,14 @@ export class index extends Component {
                 this.marqueeRef.current.start();
               }}
             >
-              <a href="#">
+              {/* <a href="#">
                 ក្នុងស្មារតីរួមចំណែកជាមួយរាជរដ្ឋាភិបាលក្នុងការប្រយុទ្ធប្រឆាំងនឹងជំងឺឆ្លងកូវីដ១៩
                 (Covid-19)
               </a>
-              <a href="#">
-                ក្នុងស្មារតីរួមចំណែកជាមួយរាជរដ្ឋាភិបាលក្នុងការប្រយុទ្ធប្រឆាំងនឹងជំងឺឆ្លងកូវីដ១៩
-                (Covid-19)
-              </a>
-              <a href="#">
-                ក្នុងស្មារតីរួមចំណែកជាមួយរាជរដ្ឋាភិបាលក្នុងការប្រយុទ្ធប្រឆាំងនឹងជំងឺឆ្លងកូវីដ១៩
-                (Covid-19)
-              </a>
+              */}
+              {this.titleNews.map((v) => {
+                return <Link to={`/news-event/${v.id}`}>{v.title}</Link>;
+              })}
             </marquee>
           </div>
           <a
@@ -415,25 +341,31 @@ export class index extends Component {
                   }
                 >
                   <h1 className={styles.latestNewsInfoTitle}>
-                    ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
-                    អញ្ជើញជាអធិបតីក្នុងពិធីប្រកាសតែងតាំង
-                    និងចូលកាន់មុខតំណែងប្រធានសាលាដំបូងខេត្តព្រៃវែង
+                    {this.state.latestNews[0]?.title.rendered}
                   </h1>
                   <p
                     className={
                       "d-none d-lg-block " + styles.latestNewsInfoDescription
                     }
                   >
-                    នៅរសៀលថ្ងៃទី៤ ខែសីហា ឆ្នាំ២០២០ នេះ ឯកឧត្តម កើត រិទ្ធ
-                    រដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌ បានអញ្ជើញ​ជាអធិបតីដ៏ខ្ពង់ខ្ពស់
-                    ក្នុងពិធីប្រកាសតែងតាំង
-                    និងចូលកាន់មុខតំណែងរបស់ប្រធានសាលាដំបូងខេត្តព្រៃវែង
+                    {truncateString(
+                      extractionHtml(
+                        this.state.latestNews[0]?.content.rendered
+                      ).pValue.join("\n"),
+                      450
+                    )}
                     <span>
-                      <Link style={{ color: "#e53e3e" }}> អានបន្ត...</Link>
+                      <Link
+                        to={`/news-event/${this.state.latestNews[0]?.id}`}
+                        style={{ color: "#e53e3e" }}
+                      >
+                        {" "}
+                        អានបន្ត...
+                      </Link>
                     </span>
                   </p>
                   <p className={styles.latestNewsInfoDate}>
-                    ថ្ងៃទី៤ ខែសីហា ឆ្នាំ២០២០
+                    {this.convertISODatetoKhmer(this.state.latestNews[0]?.date)}
                   </p>
                 </div>
                 <div
@@ -444,8 +376,7 @@ export class index extends Component {
                 >
                   <div
                     style={{
-                      backgroundImage:
-                        "url(http://moj.gov.kh/files/user-folder/2020/08/004/002/017_040820_MOJ_KH.jpg)",
+                      backgroundImage: `url(${this.state.latestNews[0]?.acf.image.url})`,
                     }}
                     className="py-1"
                   ></div>
@@ -467,123 +398,50 @@ export class index extends Component {
                       textDecoration: "none",
                       color: "inherit",
                     }}
+                    to={`/news/all`}
                   >
                     ច្រើនទៀត...
                   </Link>
                 </span>
               </div>
               <div className={"row px-3 " + styles.dailyNews}>
-                <div
-                  className={
-                    "col-md-6 col-12 py-4 px-2 m-0 " + styles.eachDailyNews
-                  }
-                >
-                  <div style={{ width: "40%", height: "100%" }}>
-                    <img
-                      src="http://moj.gov.kh/files/user-folder/2020/07/027/001/001_270720_MOJ_KH.jpg"
-                      alt=""
-                      style={{ height: "100%", width: "100%" }}
-                    />
-                  </div>
-                  <div
-                    className={"py-lg-1 pl-2 " + styles.eachDailyNewsInfo}
-                    style={{ width: "60%" }}
-                  >
-                    <h1 className={styles.eachDailyNewsInfoTitle}>
-                      <Link>
-                        ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
-                        នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សី...
-                      </Link>
-                    </h1>
-                    <p className={styles.eachDailyNewsInfoDate}>
-                      ថ្ងៃទី២៧ ខែកក្កដា ឆ្នាំ២០២០
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className={
-                    "col-md-6 col-12 py-4 px-2 m-0 " + styles.eachDailyNews
-                  }
-                >
-                  <div style={{ width: "40%", height: "100%" }}>
-                    <img
-                      src="http://www.moj.gov.kh/files/events/1595733428003_240720_MOJ_KH.jpg"
-                      alt=""
-                      style={{ height: "100%", width: "100%" }}
-                    />
-                  </div>
-                  <div
-                    className={"py-lg-1 pl-2 " + styles.eachDailyNewsInfo}
-                    style={{ width: "60%" }}
-                  >
-                    <h1 className={styles.eachDailyNewsInfoTitle}>
-                      <Link>
-                        ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
-                        អញ្ជើញចូលរួមជាអធិបតីក្នុងពិធីប្រកាសផ្ទេរ
-                        និងចូលកាន់មុខតំណែង...
-                      </Link>
-                    </h1>
-                    <p className={styles.eachDailyNewsInfoDate}>
-                      ថ្ងៃទី២៦ ខែកក្កដា ឆ្នាំ២០២០
-                    </p>
-                  </div>
-                </div>
-                <hr className="w-100 m-0 d-none d-md-block" />
-                <div
-                  className={
-                    "col-md-6 col-12 py-4 px-2 m-0 " + styles.eachDailyNews
-                  }
-                >
-                  <div style={{ width: "40%", height: "100%" }}>
-                    <img
-                      src="http://moj.gov.kh/files/user-folder/2020/07/022/001/017_220720_MOJ_KH.jpg"
-                      alt=""
-                      style={{ height: "100%", width: "100%" }}
-                    />
-                  </div>
-                  <div
-                    className={"py-lg-1 pl-2 " + styles.eachDailyNewsInfo}
-                    style={{ width: "60%" }}
-                  >
-                    <h1 className={styles.eachDailyNewsInfoTitle}>
-                      <Link>
-                        ឯកឧត្តមរដ្ឋមន្ត្រីក្រសួងយុត្តិធម៌
-                        និងជាអនុប្រធានអាជ្ញាធរជាតិប្រយុទ្ធប្រឆាំងគ្រឿងញៀនអញ្ជើញ...
-                      </Link>
-                    </h1>
-                    <p className={styles.eachDailyNewsInfoDate}>
-                      ថ្ងៃទី២៤ ខែកក្កដា ឆ្នាំ២០២០
-                    </p>
-                  </div>
-                </div>
+                {this.state.latestNews.slice(1).map((v, i) => {
+                  return (
+                    <React.Fragment>
+                      <div
+                        className={
+                          "col-md-6 col-12 py-4 px-2 m-0 " +
+                          styles.eachDailyNews
+                        }
+                      >
+                        <div style={{ width: "40%", height: "100%" }}>
+                          <img
+                            src={v.acf.image.url}
+                            alt=""
+                            style={{ height: "100%", width: "100%" }}
+                          />
+                        </div>
+                        <div
+                          className={"py-lg-1 pl-2 " + styles.eachDailyNewsInfo}
+                          style={{ width: "60%" }}
+                        >
+                          <h1 className={styles.eachDailyNewsInfoTitle}>
+                            <Link to={`/news-event/${v.id}`}>
+                              {truncateString(v.title.rendered, 119)}
+                            </Link>
+                          </h1>
+                          <p className={styles.eachDailyNewsInfoDate}>
+                            {this.convertISODatetoKhmer(v.date)}
+                          </p>
+                        </div>
+                      </div>
 
-                <div
-                  className={
-                    "col-md-6 col-12 py-4 px-2 m-0 " + styles.eachDailyNews
-                  }
-                >
-                  <div style={{ width: "40%", height: "100%" }}>
-                    <img
-                      src="http://moj.gov.kh/files/user-folder/2020/07/023/001/001_230720_MOJ_KH.jpg"
-                      alt=""
-                      style={{ height: "100%", width: "100%" }}
-                    />
-                  </div>
-                  <div
-                    className={"py-lg-1 pl-2 " + styles.eachDailyNewsInfo}
-                    style={{ width: "60%" }}
-                  >
-                    <h1 className={styles.eachDailyNewsInfoTitle}>
-                      <Link>
-                        ឯកឧត្តម ជិន ម៉ាលីន រដ្ឋលេខាធិការក្រសួងយុត្តិធម៌
-                        បានដឹកនាំក្រុមការងារបច្ចេកទេសរៀបចំ...
-                      </Link>
-                    </h1>
-                    <p className={styles.eachDailyNewsInfoDate}>
-                      ថ្ងៃទី២៣ ខែកក្កដា ឆ្នាំ២០២០
-                    </p>
-                  </div>
-                </div>
+                      {i === 1 ? (
+                        <hr className="w-100 m-0 d-none d-md-block" />
+                      ) : null}
+                    </React.Fragment>
+                  );
+                })}
               </div>
             </div>
             {/* Annoucements */}

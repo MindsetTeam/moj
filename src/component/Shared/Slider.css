@@ -1,0 +1,24 @@
+.swiper-container {
+  width: 100%;
+}
+
+.swiper-pagination {
+  margin-bottom: -12px;
+}
+
+.swiper-wrapper {
+  padding-inline-start: 0;
+}
+
+.swiper-pagination-bullet{
+opacity: 1;
+background-color:darkgray
+}
+.swiper-pagination-bullet-active{
+  background-color: #e53e3e;
+}
+.swiper-button-next, .swiper-button-prev{
+  color: #e53e3e;
+  background-image: none;
+}
+

@@ -1,0 +1,243 @@
+/* Style */
+
+/* welcome Msg */
+.welcome-msg {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+.welcome-msg .content-header {
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 2px solid #e53e3e;
+  color: #e53e3e;
+  background-color: #fff;
+  font-size: 20px;
+}
+
+.welcome-msg .content-body {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fff;
+  padding-bottom: 15px;
+}
+
+.welcome-msg .content-img {
+  float: left;
+  margin-right: 20px;
+  height: 300px; 
+  width: 400px;
+}
+/* End welcome Msg */
+
+/* History */
+.history {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+.history .content-header {
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 2px solid #e53e3e;
+  color: #e53e3e;
+  background-color: #fff;
+  font-size: 20px;
+}
+
+.history .content-body {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fff;
+  padding-bottom: 20px;
+}
+
+.history .ministry-list h1 {
+  font-size: 25px;
+}
+
+.history .ministry-list a{
+  display: block;
+  text-decoration: none;
+  color: #000;
+}
+
+/* End History */
+
+/* Previous Ministers */
+.previous-ministers {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.previous-ministers .content-header {
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 2px solid #e53e3e;
+  color: #e53e3e;
+  background-color: #fff;
+  font-size: 20px;
+}
+
+.previous-ministers .content-body {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fff;
+  padding-bottom: 20px;
+}
+
+.previous-ministers .ministers-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.previous-ministers .ministers-list-container {
+  margin-top: 15px;
+}
+
+.previous-ministers .ministers-list-container h1{
+  font-size: 20px;
+  color: #e53e3e;
+}
+
+.previous-ministers .minister {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 50%;
+}
+
+.previous-ministers .minister-info-title {
+  font-size: 17px;
+  line-height: 23px;
+  word-wrap: break-word;
+}
+
+.previous-ministers .minister-info {
+}
+
+.previous-ministers .minister-info-title span, .previous-ministers .minister-info-title a{
+  color: #000;
+  text-decoration: none;
+}
+
+.previous-ministers .minister-info-date {
+  font-size: 17px;
+}
+/* End Previous Ministers */
+
+
+/* Structure */
+.structure {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.structure .collapsible {
+  background: #6a0e00;
+  cursor: pointer;
+}
+
+.structure .active,
+.structure .collapsible:hover {
+  background-color: #6a0e00;
+}
+
+.structure .collapsible:after {
+  content: "\002B";
+  color: white;
+  float: right;
+  padding-right: 5px;
+}
+
+.structure .active:after {
+  content: "\2212";
+}
+.structure .content {
+  /* padding: 0 18px; */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+.structure .box {
+  background-color: green;
+  /* width:100px; */
+  /* min-width: 100px; */
+  /* flex-shrink: 0; */
+  min-width: 100px;
+  height: 100px;
+  margin: 2px;
+}
+
+/* End Structure */
+
+/* Media Query */
+
+/* Small to 1000px */
+@media only screen and (max-width: 1000px) {
+
+}
+
+/* <800px */
+@media only screen and (max-width: 800px) {
+  .previous-ministers .minister {
+      flex: 0 0 80%;
+  }
+}
+
+/* Md breakpoint */
+@media only screen and (max-width: 767px) {
+  /* Welcome Msg */
+  .welcome-msg .content-img {
+      float: none;
+      width: 100%;
+      height: 350px;
+  }
+  
+  .welcome-msg .content-text {
+      margin-top: 15px;
+  }
+  /* End Welcome Msg */
+
+  /* History */
+  
+  .history .content-text {
+      margin-top: 15px;
+  } 
+  /* End History */
+}
+
+/* Medium Screen Device*/
+@media only screen and (max-width: 600px) {
+  /* Welcome Msg */
+  .welcome-msg .content-img {
+      height: 300px;
+  }
+  /* End Welcome Msg */
+
+  /* History */
+
+  /* End history */
+
+  /* Previous Ministers */
+
+  /* End Previous Ministers */
+}
+
+/* Small Screen Device */
+@media only screen and (max-width: 350px) {
+  .previous-ministers .minister {
+      flex: 0 0 100%;
+  }
+}

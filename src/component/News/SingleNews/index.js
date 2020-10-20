@@ -2,23 +2,75 @@ import React, { useEffect, useState } from "react";
 import "../home.css";
 import "../main.css";
 import Slider from "../../Shared/Slider";
+import { useParams, Link } from "react-router-dom";
 
 import Activity1 from "../../../asset/activity1.png";
 import Activity2 from "../../../asset/activity2.png";
 import Activity3 from "../../../asset/activity3.png";
 import Activity4 from "../../../asset/activity4.png";
 import extractionHtml from "../../../utils/extractionHTML";
+import truncateString from "../../../utils/truncateText";
+import convertToKhmer from "../../../utils/convertToKhmer";
+
+const convertISODatetoKhmer = (date) => {
+  const dateKh = convertToKhmer.dateToKhmer(date);
+  return `ថ្ងៃទី${dateKh.dateNum} ខែ${dateKh.month} ឆ្នាំ${dateKh.year}`;
+};
 
 export default function () {
-  const [html, setHtml] = useState(null);
-  useEffect(async () => {
-    const html = await fetch(
-      "http://localhost/wordpress/wp-json/wp/v2/news"
-    ).then((res) => {
-      return res.json();
-    });
-    setHtml(html[0]);
-  }, []);
+  const { id } = useParams();
+  const [newsData, setNewsData] = useState(null);
+  const [mainImage, setMainImage] = useState(null);
+  const [relateNews, setRelateNews] = useState([]);
+  useEffect(() => {
+    fetch(
+      "http://localhost/wordpress/wp-json/wp/v2/news/" +
+        id +
+        "?_fields=id,date,title,content,acf"
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setMainImage(data.acf.image.url);
+        setNewsData(data);
+        fetch(
+          "http://localhost/wordpress/wp-json/wp/v2/news?_fields=id,title,acf&before=" +
+            data.date +
+            "&per_page=6"
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setRelateNews(data);
+          });
+      });
+  }, [id]);
+
+  const renderCarousel = [];
+  relateNews.forEach((v, i) => {
+    renderCarousel.push(
+      <Link to={`/news-event/${v.id}`}>
+        <div
+          className={
+            "col-md-4 pr-0" + (i !== 0 && i !== 3 ? " d-none d-md-block" : "")
+          }
+        >
+          <div className="card p-sm-3" style={{ border: 0 }}>
+            <img
+              className="card-img-top"
+              src={v.acf.image.sizes.medium}
+              alt="Card image cap"
+            />
+            <div className="card-body">
+              <p className="card-text">
+                {truncateString(v.title.rendered, 180)}
+              </p>
+            </div>
+          </div>
+        </div>
+      </Link>
+    );
+  });
 
   return (
     <div className="container">
@@ -34,8 +86,8 @@ export default function () {
                 ព័ត៌មានរដ្ឋមន្ត្រី / ព័ត៌មានថ្មី
               </p>
               <p className="m-0 d-none d-sm-block">
-                <i className="fa fa-calendar" aria-hidden="true"></i> ថ្ងៃទី០៥
-                ខែមិថុនា ឆ្នាំ២០២០
+                <i className="fa fa-calendar" aria-hidden="true"></i>{" "}
+                {convertISODatetoKhmer(newsData?.date)}
               </p>
             </div>
             <div className="latest-news row">
@@ -44,23 +96,24 @@ export default function () {
                   className="latest-news-info-title text-danger"
                   style={{ fontSize: "1.4em" }}
                 >
-                  {html?.title.rendered}
+                  {newsData?.title.rendered}
                 </h1>
                 <div className="latest-news-thumbnail pb-lg-3 pt-lg-2">
+                  {/* <div className="pb-lg-3 pt-lg-2"> */}
                   <div
                     style={{
-                      backgroundImage:
-                        `url(${html?.acf.main_image.url})`,
+                      backgroundImage: `url(${mainImage})`,
                       width: "100%",
                       height: "400px",
                     }}
                     className="py-1"
                   ></div>
+                  {/* <img src={mainImage} className="img-fluid py-1"/> */}
                 </div>
                 <div
                   className="latest-news-info-description pt-2 pt-sm-0"
                   dangerouslySetInnerHTML={
-                    extractionHtml(html?.content.rendered).pTag
+                    extractionHtml(newsData?.content.rendered).pTag
                   }
                 ></div>
 
@@ -92,7 +145,15 @@ export default function () {
               </div>
             </div>
             <div className="container bg-white">
-              <Slider imgs={extractionHtml(html?.content.rendered).imgTag}></Slider>
+              <Slider
+                imgs={[
+                  newsData?.acf.image.url,
+                  ...extractionHtml(newsData?.content.rendered).imgTag,
+                ]}
+                changeImage={(v) => {
+                  setMainImage(v);
+                }}
+              ></Slider>
             </div>
           </div>
 
@@ -132,141 +193,24 @@ export default function () {
                   id="multi-item-example"
                   className="carousel slide carousel-multi-item mt-0"
                   data-ride="carousel"
-                  data-interval="3000"
+                  data-interval="8000"
                 >
                   <div className="carousel-inner" role="listbox">
                     <div
                       className="carousel-item active"
                       style={{ height: "auto" }}
                     >
-                      <div className="row">
-                        <div className="col-md-4 pr-0">
-                          <div className="card p-sm-3" style={{ border: 0 }}>
-                            <img
-                              className="card-img-top"
-                              src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
-                              alt="Card image cap"
-                            />
-                            <div className="card-body">
-                              <p className="card-text">
-                                ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌
-                                និង​ជាអនុប្រធានទីដស១
-                                នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
-                                នៃក្រុមការងារថ្នាក់ស្សី...
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="col-md-4 p-0 clearfix d-none d-md-block">
-                          <div
-                            className="card p-sm-3"
-                            style={{
-                              border: 0,
-                              borderRight: "7px solid #eeeeee",
-                              borderLeft: "7px solid #eeeeee",
-                            }}
-                          >
-                            <img
-                              className="card-img-top"
-                              src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
-                              alt="Card image cap"
-                            />
-                            <div className="card-body">
-                              <p className="card-text">
-                                ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌
-                                និង​ជាអនុប្រធានទីដស១
-                                នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
-                                នៃក្រុមការងារថ្នាក់ស្សី...
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="col-md-4 pl-0 clearfix d-none d-md-block">
-                          <div className="card p-sm-3" style={{ border: 0 }}>
-                            <img
-                              className="card-img-top"
-                              src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                              alt="Card image cap"
-                            />
-                            <div className="card-body">
-                              <p className="card-text">
-                                ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌
-                                និង​ជាអនុប្រធានទីដស១
-                                នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
-                                នៃក្រុមការងារថ្នាក់ស្សី...
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <div className="row">{renderCarousel.slice(0, 3)}</div>
                     </div>
 
-                    <div className="carousel-item" style={{ height: "auto" }}>
-                      <div className="row">
-                        <div className="col-md-4 pr-0">
-                          <div className="card p-sm-3" style={{ border: 0 }}>
-                            <img
-                              className="card-img-top"
-                              src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(23).jpg"
-                              alt="Card image cap"
-                            />
-                            <div className="card-body">
-                              <p className="card-text">
-                                ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌
-                                និង​ជាអនុប្រធានទីដស១
-                                នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
-                                នៃក្រុមការងារថ្នាក់ស្សី...
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="col-md-4 p-0 clearfix d-none d-md-block">
-                          <div
-                            className="card p-sm-3"
-                            style={{
-                              border: 0,
-                              borderRight: "7px solid #eeeeee",
-                              borderLeft: "7px solid #eeeeee",
-                            }}
-                          >
-                            <img
-                              className="card-img-top"
-                              src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(12).jpg"
-                              alt="Card image cap"
-                            />
-                            <div className="card-body">
-                              <p className="card-text">
-                                ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌
-                                និង​ជាអនុប្រធានទីដស១
-                                នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
-                                នៃក្រុមការងារថ្នាក់ស្សី...
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="col-md-4 pl-0 clearfix d-none d-md-block">
-                          <div className="card p-sm-3" style={{ border: 0 }}>
-                            <img
-                              className="card-img-top"
-                              src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
-                              alt="Card image cap"
-                            />
-                            <div className="card-body">
-                              <p className="card-text">
-                                ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌
-                                និង​ជាអនុប្រធានទីដស១
-                                នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
-                                នៃក្រុមការងារថ្នាក់ស្សី...
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                    {renderCarousel.length >= 4 ? (
+                      <div
+                        className="carousel-item active"
+                        style={{ height: "auto" }}
+                      >
+                        <div className="row">{renderCarousel.slice(3)}</div>
                       </div>
-                    </div>
+                    ) : null}
                   </div>
                 </div>
               </div>
@@ -276,7 +220,8 @@ export default function () {
 
         <div className="col-lg-3 pl-lg-0">
           <div className="daily-news-container">
-            <div className="title mb-1 p-1 px-2 pt-2 borderRed">
+            <div className="title mb-1 p-1 px-2 pt-2 ">
+              {/* <div className="title mb-1 p-1 px-2 pt-2 borderRed"> */}
               សេចក្ដីជូនដំណឹង
             </div>
             <div className="daily-news row">
@@ -415,7 +360,8 @@ export default function () {
             className="activities-container"
             style={{ paddingBottom: "10px" }}
           >
-            <div className="title my-1 p-1 px-2 pt-2 borderRed text-danger">
+            <div className="title my-1 p-1 px-2 pt-2  text-danger">
+              {/* <div className="title my-1 p-1 px-2 pt-2 borderRed text-danger"> */}
               សកម្មភាពរបស់ក្រសួងយុត្តិធម៌
             </div>
             <div className="activities">

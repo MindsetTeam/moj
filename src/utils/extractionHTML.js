@@ -2,12 +2,16 @@ export default function (html) {
   const returnValue = {
     imgTag: [],
     pTag: {},
+    pValue: []
   };
   const htmlDom = document.createElement("div");
   htmlDom.innerHTML = html;
   returnValue.pTag.__html = `${Array.from(htmlDom.querySelectorAll(
     "p"
-  )).map(v => (`<p>${v.innerHTML}</p>`)).join("")}`;
+  )).map(v => {
+    returnValue.pValue.push(v.textContent)
+    return (`<p>${v.innerHTML}</p>`)
+  }).join("")}`;
 
   htmlDom
     .querySelectorAll("img")
