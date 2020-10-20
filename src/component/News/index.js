@@ -32,7 +32,7 @@ export default function (props) {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `http://localhost/wordpress/wp-json/wp/v2/news?_fields=id,date,title,content,acf${
+      `http://demo.mcs.gov.kh/moj/wp-json/wp/v2/news?_fields=id,date,title,content,acf${
         types == "all" ? "" : `&categories=${location.state.id}`
       }&per_page=5&page=` + pageNum
     )
@@ -43,6 +43,7 @@ export default function (props) {
       })
       .then((news) => {
         setNews(news);
+        console.log(news);
         setLoading(false);
       });
   }, [pageNum, location]);
@@ -64,7 +65,7 @@ export default function (props) {
                 <div className="latest-news row">
                   <div className="latest-news-info col-lg-7 pt-0 pt-md-0 pt-md-3 px-4">
                     <h1 className="latest-news-info-title">
-                      {truncateString(news[0].title.rendered, 130)}
+                      {truncateString(news[0].title.rendered, 190)}
                     </h1>
                     <p className=" latest-news-info-description">
                       {truncateString(
@@ -78,7 +79,7 @@ export default function (props) {
                   </div>
                   <div className="latest-news-thumbnail col-lg-5 p-0  pt-lg-2 pr-lg-2 ">
                     <img
-                      src={news[0].acf.image.sizes["post-thumbnail"]}
+                      src={news[0].acf.image.sizes["large"]}
                       alt=""
                       className="img-fluid"
                       style={{
@@ -95,40 +96,42 @@ export default function (props) {
               {news.length <= 1 || loading
                 ? null
                 : news.slice(1).map((v) => (
-                    <Link to={`/news-event/${v.id}`}>
-                      <div className="each-daily-news col-12 py-4 px-2 m-0">
-                        <div
-                          className="each-daily-news-thumbnail"
-                          style={{
-                            width: "30%",
-                            height: "100%",
-                          }}
-                        >
-                          <img
-                            src={v.acf.image.sizes.thumbnail}
-                            className="img-fluid"
+                    <React.Fragment>
+                      <Link to={`/news-event/${v.id}`}>
+                        <div className="each-daily-news col-12 py-4 px-2 m-0">
+                          <div
+                            className="each-daily-news-thumbnail"
                             style={{
-                              width: "100%",
-                              maxHeight: "170px",
+                              width: "30%",
+                              height: "100%",
                             }}
-                          />
+                          >
+                            <img
+                              src={v.acf.image.sizes.medium}
+                              className="img-fluid"
+                              style={{
+                                width: "100%",
+                                maxHeight: "170px",
+                              }}
+                            />
+                          </div>
+                          <div
+                            className="each-daily-news-info py-lg-1 pl-2"
+                            style={{ width: "65%" }}
+                          >
+                            <h1 className="each-daily-news-info-title">
+                              <a href="#">
+                                {truncateString(v.title.rendered, 470)}
+                              </a>
+                            </h1>
+                            <p className="each-daily-news-info-date pt-2">
+                              {convertISODatetoKhmer(v.date)}
+                            </p>
+                          </div>
                         </div>
-                        <div
-                          className="each-daily-news-info py-lg-1 pl-2"
-                          style={{ width: "65%" }}
-                        >
-                          <h1 className="each-daily-news-info-title">
-                            <a href="#">
-                              {truncateString(v.title.rendered, 470)}
-                            </a>
-                          </h1>
-                          <p className="each-daily-news-info-date pt-2">
-                            {convertISODatetoKhmer(v.date)}
-                          </p>
-                        </div>
-                      </div>
+                      </Link>
                       <hr className="w-100 m-0 d-none d-md-block" />
-                    </Link>
+                    </React.Fragment>
                   ))}
               <div className="mx-auto">
                 <Paginate

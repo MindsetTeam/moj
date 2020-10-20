@@ -28,11 +28,11 @@ export class index extends Component {
   }
   async componentDidMount() {
     const featuredNews = await fetch(
-      "http://localhost/wordpress/wp-json/wp/v2/news?_fields=id,date,acf,title&orderby=modified&featured_news=yes&per_page=18"
+      "http://demo.mcs.gov.kh/moj/wp-json/wp/v2/news?_fields=id,date,acf,title&orderby=modified&featured_news=yes&per_page=18"
     ).then((res) => res.json());
     this.setState({ featuredNews });
     const latestNews = await fetch(
-      "http://localhost/wordpress/wp-json/wp/v2/news?_fields=id,date,acf,title,content&per_page=5"
+      "http://demo.mcs.gov.kh/moj/wp-json/wp/v2/news?_fields=id,date,acf,title,content&per_page=5"
     ).then((res) => res.json());
     this.setState({ latestNews });
   }
@@ -352,7 +352,7 @@ export class index extends Component {
                       extractionHtml(
                         this.state.latestNews[0]?.content.rendered
                       ).pValue.join("\n"),
-                      450
+                      270
                     )}
                     <span>
                       <Link

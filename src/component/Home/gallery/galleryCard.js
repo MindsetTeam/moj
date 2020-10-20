@@ -1,31 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./index.module.css";
+import extractionHtml from "../../../utils/extractionHTML";
 import Slider from "../../Shared/Slider";
 
-function galleryCard(props) {
+export default function (props) {
+  const [mainImage, setMainImage] = useState(
+    props.data.acf["featured_image"].url
+  );
+  let imageValue = extractionHtml(props.data.content.rendered).imgTag;
+  const modalClick = () => {
+    setTimeout(() => {
+      window.dispatchEvent(new Event("resize"));
+    }, 200);
+  };
   return (
     <div className={styles.card}>
       <div
         data-toggle="modal"
-        data-target={"#exampleModalCenter" + props.id}
+        data-target={"#exampleModalCenter" + props.data?.id}
         data-backdrop="static"
+        onClick={modalClick}
       >
         <img
           className={styles.thumbnail}
-          src="https://images.unsplash.com/photo-1519098901909-b1553a1190af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+          src={props.data?.acf["featured_image"].url}
         ></img>
         <div className={styles.cardBody}>
-          <p>
-            Deserunt ex pariatur ullamco reprehenderit nisi ipsum pariatur ipsum
-            sint. Ipsum duis occaecat amet ullamco sit. Et voluptate anim Lorem
-          </p>
+          <p>{props.data.title.rendered}</p>
           <div className={styles.cardBodyInfo}>
             <p>
-              <i className="fa fa-calendar-alt pt-1 mr-1"></i>1-04-2020
+              <i className="fa fa-calendar-alt pt-1 mr-1"></i>
+              {props.data.date}
             </p>
             <p>
               {" "}
-              <i className="fa fa-images pt-1 mr-1"></i>5 photos
+              <i className="fa fa-images pt-1 mr-1"></i>
+              {imageValue.length} photos
             </p>
           </div>
         </div>
@@ -33,7 +43,7 @@ function galleryCard(props) {
       {/* Modal */}
       <div
         class="modal fade "
-        id={"exampleModalCenter" + props.id}
+        id={"exampleModalCenter" + props.data?.id}
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
@@ -58,7 +68,7 @@ function galleryCard(props) {
               </button>
             </div>
             <div class="modal-body p-0">
-              <p>{props.id}</p>
+              {/* <p>{props.id}</p>
               <img
                 className={styles.mainImg}
                 src={"https://robohash.org/" + props.id}
@@ -69,8 +79,37 @@ function galleryCard(props) {
                 ad enim dolore veniam non. Nulla adipisicing est culpa
                 consectetur.
               </p>
-              <div>
-                <Slider></Slider>
+              <div> */}
+              {/* <Slider></Slider> */}
+              {/* </div> */}
+
+              <div className="latest-news row">
+                <div className="latest-news-info pt-0 pt-md-0 py-md-3 px-4">
+                  <h1
+                    className="latest-news-info-title text-danger"
+                    style={{ fontSize: "1.4em" }}
+                  >
+                    {props.data?.title.rendered}
+                  </h1>
+                  <div className="latest-news-thumbnail pb-lg-3 pt-lg-2">
+                    <img
+                      src={mainImage}
+                      className="img-fluid py-1"
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="container bg-white">
+                <Slider
+                  imgs={[
+                    props.data?.acf["featured_image"].url,
+                    ...extractionHtml(props.data?.content.rendered).imgTag,
+                  ]}
+                  changeImage={(v) => {
+                    setMainImage(v);
+                  }}
+                ></Slider>
               </div>
             </div>
           </div>
@@ -79,5 +118,3 @@ function galleryCard(props) {
     </div>
   );
 }
-
-export default galleryCard;

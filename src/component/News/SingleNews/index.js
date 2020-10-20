@@ -24,7 +24,7 @@ export default function () {
   const [relateNews, setRelateNews] = useState([]);
   useEffect(() => {
     fetch(
-      "http://localhost/wordpress/wp-json/wp/v2/news/" +
+      "http://demo.mcs.gov.kh/moj/wp-json/wp/v2/news/" +
         id +
         "?_fields=id,date,title,content,acf"
     )
@@ -35,7 +35,7 @@ export default function () {
         setMainImage(data.acf.image.url);
         setNewsData(data);
         fetch(
-          "http://localhost/wordpress/wp-json/wp/v2/news?_fields=id,title,acf&before=" +
+          "http://demo.mcs.gov.kh/moj/wp-json/wp/v2/news?_fields=id,title,acf&before=" +
             data.date +
             "&per_page=6"
         )
@@ -90,6 +90,7 @@ export default function () {
                 {convertISODatetoKhmer(newsData?.date)}
               </p>
             </div>
+
             <div className="latest-news row">
               <div className="latest-news-info pt-0 pt-md-0 py-md-3 px-4">
                 <h1
@@ -100,15 +101,19 @@ export default function () {
                 </h1>
                 <div className="latest-news-thumbnail pb-lg-3 pt-lg-2">
                   {/* <div className="pb-lg-3 pt-lg-2"> */}
-                  <div
+                  {/* <div
                     style={{
                       backgroundImage: `url(${mainImage})`,
                       width: "100%",
                       height: "400px",
                     }}
                     className="py-1"
-                  ></div>
-                  {/* <img src={mainImage} className="img-fluid py-1"/> */}
+                  ></div> */}
+                  <img
+                    src={mainImage}
+                    className="img-fluid py-1"
+                    style={{ width: "100%" }}
+                  />
                 </div>
                 <div
                   className="latest-news-info-description pt-2 pt-sm-0"
@@ -155,6 +160,7 @@ export default function () {
                 }}
               ></Slider>
             </div>
+            
           </div>
 
           <div className="daily-news-container my-2">

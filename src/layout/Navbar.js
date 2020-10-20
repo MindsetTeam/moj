@@ -8,7 +8,7 @@ export class Navbar extends Component {
   }
   async componentDidMount() {
     const data = await fetch(
-      "http://localhost/wordpress/wp-json/wp/v2/categories?_fields=id,name,slug&parent=3"
+      "http://demo.mcs.gov.kh/moj/wp-json/wp/v2/categories?_fields=id,name,slug&parent=2"
     ).then((res) => res.json());
     this.setState({
       newTypes: data,

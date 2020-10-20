@@ -13,7 +13,8 @@ export default function Pagination(props) {
         pageRangeDisplayed={5}
         onPageChange={props.changePageNum}
         containerClassName={"pagination " + styles.pagination}
-        subContainerClassName={"page pagination " + styles.paginationChild}
+        su
+        bContainerClassName={"page pagination " + styles.paginationChild}
         activeClassName={"active " + styles.active}
         previousLabel="ថយក្រោយ <"
         nextLabel="> ទៅមុខ"
