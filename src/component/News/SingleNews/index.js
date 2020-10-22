@@ -49,7 +49,8 @@ export default function () {
   const renderCarousel = [];
   relateNews.forEach((v, i) => {
     renderCarousel.push(
-      <Link key={`news-${i}`}
+      <Link
+        key={`news-${i}`}
         to={`/news-event/${v.id}`}
         className={
           "col-md-4 pr-0" + (i !== 0 && i !== 3 ? " d-none d-md-block" : "")
@@ -68,19 +69,18 @@ export default function () {
       </Link>
     );
   });
-console.log(renderCarousel);
   return (
     <div className="container">
       <div className="row mt-2">
         <div className="col-lg-9">
           <div className="latest-news-container">
             <div className="title mb-1 p-1 px-2 pt-2 d-flex justify-content-between">
-              <p className="m-0">
+              <p className="m-0" >
                 <span
                   className="fa fa-bullhorn pr-2"
                   style={{ borderRight: "3px solid red", fontSize: "1.3em" }}
                 ></span>{" "}
-                ព័ត៌មានរដ្ឋមន្ត្រី / ព័ត៌មានថ្មី
+                <Link to={`/news/all`} style={{color: 'inherit'}}>ព័ត៌មានទាំងអស់</Link> / ព័ត៌មានថ្មី
               </p>
               <p className="m-0 d-none d-sm-block">
                 <i className="fa fa-calendar" aria-hidden="true"></i>{" "}
@@ -206,10 +206,7 @@ console.log(renderCarousel);
                     </div>
 
                     {renderCarousel.length >= 4 ? (
-                      <div
-                        className="carousel-item"
-                        style={{ height: "auto" }}
-                      >
+                      <div className="carousel-item" style={{ height: "auto" }}>
                         <div className="row">{renderCarousel.slice(3)}</div>
                       </div>
                     ) : null}
