@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../home.css";
 import "../main.css";
 import Slider from "../../Shared/Slider";
@@ -12,6 +12,7 @@ import Activity4 from "../../../asset/activity4.png";
 import extractionHtml from "../../../utils/extractionHTML";
 import truncateString from "../../../utils/truncateText";
 import convertToKhmer from "../../../utils/convertToKhmer";
+import NewsContext from "../../../context/newsTypes";
 
 const convertISODatetoKhmer = (date) => {
   const dateKh = convertToKhmer.dateToKhmer(date);
@@ -19,22 +20,28 @@ const convertISODatetoKhmer = (date) => {
 };
 
 export default function () {
+  const newsTypesData = useContext(NewsContext);
   const { id } = useParams();
   const [newsData, setNewsData] = useState(null);
   const [mainImage, setMainImage] = useState(null);
   const [relateNews, setRelateNews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [newsTypes, setNewsTypes] = useState("");
   useEffect(() => {
     setLoading(true);
     fetch(
       "http://demo.mcs.gov.kh/moj/wp-json/wp/v2/news/" +
         id +
-        "?_fields=id,date,title,content,acf"
+        "?_fields=id,date,title,content,acf,categories"
     )
       .then((res) => {
         return res.json();
       })
       .then((data) => {
+        const newstypes = newsTypesData.filter((v) =>
+          data.categories.includes(v.id)
+        )[0];
+        setNewsTypes(newstypes);
         setMainImage(data.acf.image.url);
         setNewsData(data);
         setLoading(false);
@@ -87,7 +94,16 @@ export default function () {
                 <Link to={`/news/all`} style={{ color: "inherit" }}>
                   ព័ត៌មានទាំងអស់
                 </Link>{" "}
-                / ព័ត៌មានថ្មី
+                /{" "}
+                <Link
+                  to={{
+                    pathname: `/news/${newsTypes?.slug}`,
+                    state: { id: newsTypes?.id },
+                  }}
+                  style={{ color: "inherit" }}
+                >
+                  {newsTypes?.name}
+                </Link>{" "}
               </p>
               <p className="m-0 d-none d-sm-block">
                 <i className="fa fa-calendar" aria-hidden="true"></i>{" "}
