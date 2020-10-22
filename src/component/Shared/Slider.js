@@ -48,9 +48,9 @@ const MutipleSlidesPerView = (props) => {
         style={{ cursor: "pointer" }}
       >
         <img
-          className="img-fluid"
+          className="img-fluid gallery-subImg"
           src={v}
-          style={{ listStyle: "none", maxHeight: "300px" }}
+          style={{ listStyle: "none" }}
         />
       </div>
     );

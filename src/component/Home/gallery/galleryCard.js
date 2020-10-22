@@ -84,10 +84,10 @@ export default function (props) {
               {/* </div> */}
 
               <div className="latest-news row">
-                <div className="latest-news-info pt-0 pt-md-0 py-md-3 px-4">
+                <div className="latest-news-info pt-0 pt-md-0 py-md-3 px-lg-5 px-4">
                   <h1
-                    className="latest-news-info-title text-danger"
-                    style={{ fontSize: "1.4em" }}
+                    className="latest-news-info-title text-danger pt-2"
+                    style={{ fontSize: "1.2em" }}
                   >
                     {props.data?.title.rendered}
                   </h1>

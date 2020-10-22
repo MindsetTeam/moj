@@ -171,7 +171,7 @@ export class MeetingAll extends Component {
                     </div>
 
                     <div
-                      className="modal fade mt-5"
+                      className="modal fade"
                       id={"exampleModal" + i}
                       tabIndex="-1"
                       role="dialog"

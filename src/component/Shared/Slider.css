@@ -10,15 +10,25 @@
   padding-inline-start: 0;
 }
 
-.swiper-pagination-bullet{
-opacity: 1;
-background-color:darkgray
+.swiper-pagination-bullet {
+  opacity: 1;
+  background-color: darkgray;
 }
-.swiper-pagination-bullet-active{
+.swiper-pagination-bullet-active {
   background-color: #e53e3e;
 }
-.swiper-button-next, .swiper-button-prev{
+.swiper-button-next,
+.swiper-button-prev {
   color: #e53e3e;
   background-image: none;
 }
 
+.gallery-subImg {
+  height: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+  .gallery-subImg {
+    height: 100px;
+  }
+}
