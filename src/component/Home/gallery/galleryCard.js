@@ -3,6 +3,8 @@ import styles from "./index.module.css";
 import extractionHtml from "../../../utils/extractionHTML";
 import Slider from "../../Shared/Slider";
 
+import truncateString from "../../../utils/truncateText";
+
 export default function (props) {
   const [mainImage, setMainImage] = useState(
     props.data.acf["featured_image"].url
@@ -26,7 +28,7 @@ export default function (props) {
           src={props.data?.acf["featured_image"].url}
         ></img>
         <div className={styles.cardBody}>
-          <p>{props.data.title.rendered}</p>
+          <p> {truncateString(props.data.title.rendered, 170)}</p>
           <div className={styles.cardBodyInfo}>
             <p>
               <i className="fa fa-calendar-alt pt-1 mr-1"></i>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./index.module.css";
 
 import Paginate from "../../Shared/Pagination";
+import Loading from "../../Shared/Loading";
 
 import GalleryCard from "./galleryCard";
 
@@ -15,7 +16,9 @@ export default function () {
   const [galleriesData, setGalleriesData] = useState([]);
   const [pageNum, setPageNum] = useState(1);
   const [searchInput, setSearchInput] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
     fetch(
       "http://demo.mcs.gov.kh/moj/wp-json/wp/v2/categories?_fields=id,name&parent=7"
     )
@@ -28,10 +31,12 @@ export default function () {
             name: "ទាំងអស់",
           },
         ]);
+        setLoading(false);
       });
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     fetch(
       `http://demo.mcs.gov.kh/moj/wp-json/wp/v2/gallery?_fields=id,date,title,content,acf${
         searchInput
@@ -43,7 +48,10 @@ export default function () {
         setTotalPages(res.headers.get("x-wp-totalpages"));
         return res.json();
       })
-      .then((data) => setGalleriesData(data));
+      .then((data) => {
+        setGalleriesData(data);
+        setLoading(false);
+      });
   }, [order, pageNum, galleryType, searchInput]);
 
   const changePageNum = (num) => {
@@ -111,12 +119,15 @@ export default function () {
       </div>
       {/* End Header */}
       <div className={styles.contentBody}>
-        <div className={styles.galleries + " m-0"}>
-          {galleriesData.map((v, i) => {
-            return <GalleryCard key={i} data={v} />;
-          })}
-        </div>
-        <Paginate pageCount={totalPages} changePageNum={changePageNum} />
+        {loading && <Loading></Loading>}
+        {!loading && [
+          <div className={styles.galleries + " m-0"}>
+            {galleriesData.map((v, i) => {
+              return <GalleryCard key={i} data={v} />;
+            })}
+          </div>,
+          <Paginate pageCount={totalPages} changePageNum={changePageNum} />,
+        ]}
       </div>
       {/* End Body */}
     </div>
