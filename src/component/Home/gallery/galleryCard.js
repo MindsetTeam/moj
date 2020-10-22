@@ -57,13 +57,13 @@ export default function (props) {
         >
           <div class="modal-content">
             <div class="modal-body p-0">
-              <div className="latest-news row">
-                <div className="latest-news-info pt-0 pt-md-0 py-md-3 px-lg-5 px-4">
+              <div className="row">
+                <div className="pt-0 pt-md-0 py-md-3 px-lg-5 px-4">
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <h1
-                      className="latest-news-info-title text-danger pt-2 mr-2"
+                      className="text-danger pt-2 mr-2"
                       style={{ fontSize: "1.2em" }}
                     >
                       {props.data?.title.rendered}
@@ -78,7 +78,7 @@ export default function (props) {
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div className="latest-news-thumbnail pb-lg-3 pt-lg-2">
+                  <div className="pb-lg-3 pt-lg-2">
                     <img
                       src={mainImage}
                       className="img-fluid py-1"
