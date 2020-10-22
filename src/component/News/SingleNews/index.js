@@ -49,23 +49,20 @@ export default function () {
   const renderCarousel = [];
   relateNews.forEach((v, i) => {
     renderCarousel.push(
-      <Link to={`/news-event/${v.id}`}>
-        <div
-          className={
-            "col-md-4 pr-0" + (i !== 0 && i !== 3 ? " d-none d-md-block" : "")
-          }
-        >
-          <div className="card p-sm-3" style={{ border: 0 }}>
-            <img
-              className="card-img-top"
-              src={v.acf.image.sizes.medium}
-              alt="Card image cap"
-            />
-            <div className="card-body">
-              <p className="card-text">
-                {truncateString(v.title.rendered, 180)}
-              </p>
-            </div>
+      <Link
+        to={`/news-event/${v.id}`}
+        className={
+          "col-md-4 pr-0" + (i !== 0 && i !== 3 ? " d-none d-md-block" : "")
+        }
+      >
+        <div className="card p-sm-3" style={{ border: 0 }}>
+          <img
+            className="card-img-top"
+            src={v.acf.image.sizes.medium}
+            alt="Card image cap"
+          />
+          <div className="card-body">
+            <p className="card-text">{truncateString(v.title.rendered, 180)}</p>
           </div>
         </div>
       </Link>
@@ -160,7 +157,6 @@ export default function () {
                 }}
               ></Slider>
             </div>
-            
           </div>
 
           <div className="daily-news-container my-2">

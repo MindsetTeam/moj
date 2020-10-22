@@ -16,6 +16,7 @@
 
 .sortIcon {
   color: #fff;
+  cursor: pointer;
   background-color: #e53e3e;
   padding: 5px;
   border-radius: 10px;

@@ -30,6 +30,9 @@ const News = React.lazy(() => import("./component/News/index.js"));
 const SingleNews = React.lazy(() =>
   import("./component/News/SingleNews/index")
 );
+const Structure = React.lazy(() =>
+  import("./component/About/structure/index")
+);
 
 function App() {
   return (
@@ -61,6 +64,9 @@ function App() {
             </Route>
             <Route path="/gallery">
               <Gallery></Gallery>
+            </Route>
+            <Route path="/structure">
+              <Structure/>
             </Route>
             <Route path="/news-event/:id">
               <SingleNews />
