@@ -3,6 +3,7 @@ import "../home.css";
 import "../main.css";
 import Slider from "../../Shared/Slider";
 import { useParams, Link } from "react-router-dom";
+import Loading from "../../Shared/Loading";
 
 import Activity1 from "../../../asset/activity1.png";
 import Activity2 from "../../../asset/activity2.png";
@@ -22,7 +23,9 @@ export default function () {
   const [newsData, setNewsData] = useState(null);
   const [mainImage, setMainImage] = useState(null);
   const [relateNews, setRelateNews] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
     fetch(
       "http://demo.mcs.gov.kh/moj/wp-json/wp/v2/news/" +
         id +
@@ -34,6 +37,7 @@ export default function () {
       .then((data) => {
         setMainImage(data.acf.image.url);
         setNewsData(data);
+        setLoading(false);
         fetch(
           "http://demo.mcs.gov.kh/moj/wp-json/wp/v2/news?_fields=id,title,acf&before=" +
             data.date +
@@ -75,12 +79,15 @@ export default function () {
         <div className="col-lg-9">
           <div className="latest-news-container">
             <div className="title mb-1 p-1 px-2 pt-2 d-flex justify-content-between">
-              <p className="m-0" >
+              <p className="m-0">
                 <span
                   className="fa fa-bullhorn pr-2"
                   style={{ borderRight: "3px solid red", fontSize: "1.3em" }}
                 ></span>{" "}
-                <Link to={`/news/all`} style={{color: 'inherit'}}>ព័ត៌មានទាំងអស់</Link> / ព័ត៌មានថ្មី
+                <Link to={`/news/all`} style={{ color: "inherit" }}>
+                  ព័ត៌មានទាំងអស់
+                </Link>{" "}
+                / ព័ត៌មានថ្មី
               </p>
               <p className="m-0 d-none d-sm-block">
                 <i className="fa fa-calendar" aria-hidden="true"></i>{" "}
@@ -89,73 +96,49 @@ export default function () {
             </div>
 
             <div className="latest-news row">
-              <div className="latest-news-info pt-0 pt-md-0 py-md-3 px-4">
-                <h1
-                  className="latest-news-info-title text-danger"
-                  style={{ fontSize: "1.4em" }}
-                >
-                  {newsData?.title.rendered}
-                </h1>
-                <div className="latest-news-thumbnail pb-lg-3 pt-lg-2">
-                  {/* <div className="pb-lg-3 pt-lg-2"> */}
-                  {/* <div
-                    style={{
-                      backgroundImage: `url(${mainImage})`,
-                      width: "100%",
-                      height: "400px",
-                    }}
-                    className="py-1"
-                  ></div> */}
-                  <img
-                    src={mainImage}
-                    className="img-fluid py-1"
-                    style={{ width: "100%" }}
-                  />
-                </div>
+              {loading && (
                 <div
-                  className="latest-news-info-description pt-2 pt-sm-0"
-                  dangerouslySetInnerHTML={
-                    extractionHtml(newsData?.content.rendered).pTag
-                  }
-                ></div>
-
-                <div className="row">
-                  {/* <Slider /> */}
-                  {/* <div className="col-4 p-1">
-                    <img
-                      src="http://moj.gov.kh/files/user-folder/2020/07/022/001/017_220720_MOJ_KH.jpg"
-                      alt=""
-                      className="img-fluid"
-                    />
-                  </div>
-
-                  <div className="col-4 p-1">
-                    <img
-                      src="http://moj.gov.kh/files/user-folder/2020/07/022/001/017_220720_MOJ_KH.jpg"
-                      alt=""
-                      className="img-fluid"
-                    />
-                  </div>
-                  <div className="col-4 p-1">
-                    <img
-                      src="http://moj.gov.kh/files/user-folder/2020/07/022/001/017_220720_MOJ_KH.jpg"
-                      alt=""
-                      className="img-fluid"
-                    />
-                  </div> */}
+                  style={{
+                    width: "100%",
+                  }}
+                >
+                  <Loading></Loading>
                 </div>
-              </div>
-            </div>
-            <div className="container bg-white">
-              <Slider
-                imgs={[
-                  newsData?.acf.image.url,
-                  ...extractionHtml(newsData?.content.rendered).imgTag,
-                ]}
-                changeImage={(v) => {
-                  setMainImage(v);
-                }}
-              ></Slider>
+              )}
+              {!loading && [
+                <div className="latest-news-info pt-0 pt-md-0 py-md-3 px-4">
+                  <h1
+                    className="latest-news-info-title text-danger"
+                    style={{ fontSize: "1.4em" }}
+                  >
+                    {newsData?.title.rendered}
+                  </h1>
+                  <div className="latest-news-thumbnail pb-lg-3 pt-lg-2">
+                    <img
+                      src={mainImage}
+                      className="img-fluid py-1"
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+                  <div
+                    className="latest-news-info-description pt-2 pt-sm-0"
+                    dangerouslySetInnerHTML={
+                      extractionHtml(newsData?.content.rendered).pTag
+                    }
+                  ></div>
+                </div>,
+                <div className="container bg-white">
+                  <Slider
+                    imgs={[
+                      newsData?.acf.image.url,
+                      ...extractionHtml(newsData?.content.rendered).imgTag,
+                    ]}
+                    changeImage={(v) => {
+                      setMainImage(v);
+                    }}
+                  ></Slider>
+                </div>,
+              ]}
             </div>
           </div>
 

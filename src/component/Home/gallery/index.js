@@ -115,12 +115,6 @@ export default function () {
           {galleriesData.map((v, i) => {
             return <GalleryCard key={i} data={v} />;
           })}
-          {/* <GalleryCard title="hi1" id="1"></GalleryCard>
-          <GalleryCard title="hi2" id="2"></GalleryCard>
-          <GalleryCard title="hi3" id="3"></GalleryCard>
-          <GalleryCard title="hi4" id="4"></GalleryCard>
-          <GalleryCard title="hi5" id="5"></GalleryCard>
-          <GalleryCard title="hi6" id="6"></GalleryCard> */}
         </div>
         <Paginate pageCount={totalPages} changePageNum={changePageNum} />
       </div>

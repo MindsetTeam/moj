@@ -54,43 +54,28 @@ export default function (props) {
           role="document"
         >
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Gallery
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
             <div class="modal-body p-0">
-              {/* <p>{props.id}</p>
-              <img
-                className={styles.mainImg}
-                src={"https://robohash.org/" + props.id}
-              ></img>
-              <p className="text-center">
-                Laborum ipsum laboris Lorem in incididunt nulla culpa nulla
-                cillum. Mollit dolor sit nostrud dolore. Cillum minim officia ea
-                ad enim dolore veniam non. Nulla adipisicing est culpa
-                consectetur.
-              </p>
-              <div> */}
-              {/* <Slider></Slider> */}
-              {/* </div> */}
-
               <div className="latest-news row">
                 <div className="latest-news-info pt-0 pt-md-0 py-md-3 px-lg-5 px-4">
-                  <h1
-                    className="latest-news-info-title text-danger pt-2"
-                    style={{ fontSize: "1.2em" }}
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    {props.data?.title.rendered}
-                  </h1>
+                    <h1
+                      className="latest-news-info-title text-danger pt-2 mr-2"
+                      style={{ fontSize: "1.2em" }}
+                    >
+                      {props.data?.title.rendered}
+                    </h1>
+                    <button
+                      type="button"
+                      className="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                      style={{ outline: "none" }}
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
                   <div className="latest-news-thumbnail pb-lg-3 pt-lg-2">
                     <img
                       src={mainImage}
