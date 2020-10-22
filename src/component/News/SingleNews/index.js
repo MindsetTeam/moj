@@ -49,7 +49,7 @@ export default function () {
   const renderCarousel = [];
   relateNews.forEach((v, i) => {
     renderCarousel.push(
-      <Link
+      <Link key={`news-${i}`}
         to={`/news-event/${v.id}`}
         className={
           "col-md-4 pr-0" + (i !== 0 && i !== 3 ? " d-none d-md-block" : "")
@@ -68,7 +68,7 @@ export default function () {
       </Link>
     );
   });
-
+console.log(renderCarousel);
   return (
     <div className="container">
       <div className="row mt-2">
@@ -207,7 +207,7 @@ export default function () {
 
                     {renderCarousel.length >= 4 ? (
                       <div
-                        className="carousel-item active"
+                        className="carousel-item"
                         style={{ height: "auto" }}
                       >
                         <div className="row">{renderCarousel.slice(3)}</div>

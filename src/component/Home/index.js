@@ -340,9 +340,11 @@ export class index extends Component {
                     styles.latestNewsInfo
                   }
                 >
-                  <h1 className={styles.latestNewsInfoTitle}>
-                    {this.state.latestNews[0]?.title.rendered}
-                  </h1>
+                  <Link to={`/news-event/${this.state.latestNews[0]?.id}`}>
+                    <h1 className={styles.latestNewsInfoTitle}>
+                      {this.state.latestNews[0]?.title.rendered}
+                    </h1>
+                  </Link>
                   <p
                     className={
                       "d-none d-lg-block " + styles.latestNewsInfoDescription
