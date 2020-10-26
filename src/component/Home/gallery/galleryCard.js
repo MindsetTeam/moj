@@ -52,39 +52,37 @@ export default function (props) {
         aria-hidden="true"
       >
         <div
-          class="modal-dialog modal-dialog-centered modal-lg"
+          class="modal-dialog modal-dialog-centered modal-xl"
           role="document"
         >
           <div class="modal-content">
             <div class="modal-body p-0">
-              <div className="row">
-                <div className="pt-0 pt-md-0 py-md-3 px-lg-5 px-4">
-                  <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
+              <div className="pt-0 pt-md-0 py-md-3 px-lg-5 px-4">
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <h1
+                    className="text-danger pt-2 mr-2"
+                    style={{ fontSize: "1.2em" }}
                   >
-                    <h1
-                      className="text-danger pt-2 mr-2"
-                      style={{ fontSize: "1.2em" }}
-                    >
-                      {props.data?.title.rendered}
-                    </h1>
-                    <button
-                      type="button"
-                      className="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                      style={{ outline: "none" }}
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div className="pb-lg-3 pt-lg-2">
-                    <img
-                      src={mainImage}
-                      className="img-fluid py-1"
-                      style={{ width: "100%" }}
-                    />
-                  </div>
+                    {props.data?.title.rendered}
+                  </h1>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    style={{ outline: "none" }}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="pb-lg-3 pt-lg-2">
+                  <img
+                    src={mainImage}
+                    className="img-fluid py-1"
+                    style={{ width: "100%" }}
+                  />
                 </div>
               </div>
               <div className="container bg-white">

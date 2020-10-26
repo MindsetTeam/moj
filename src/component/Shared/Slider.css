@@ -25,11 +25,37 @@
 
 .gallery-subImg {
   width: 100%;
-  height: 185px;
+  height: 230px;
 }
 
-@media only screen and (max-width: 600px) {
+/* Media Query */
+
+/* Small to 1000px */
+@media only screen and (max-width: 1000px) {
   .gallery-subImg {
-    height: 100px;
+    height: 170px;
   }
+}
+
+/* LG break */
+@media only screen and (max-width: 991px) {
+  .gallery-subImg {
+    height: 130px;
+  }
+}
+
+/* <800px */
+@media only screen and (max-width: 800px) {
+}
+
+/* Md breakpoint */
+@media only screen and (max-width: 767px) {
+}
+
+/* Medium Screen Device*/
+@media only screen and (max-width: 600px) {
+}
+
+/* Small Screen Device */
+@media only screen and (max-width: 350px) {
 }
