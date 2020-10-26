@@ -1,0 +1,63 @@
+.lawDocumentsContainer {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.lawDocumentsContainer h1:first-child {
+  text-align: center;
+  color: #e53e3e;
+  font-size: 2em;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.inputContainer input {
+  margin-right: 20px;
+  margin-bottom: 10px;
+  flex: 0 0 20%;
+}
+
+/* Table */
+.tableContainer {
+  text-align: center;
+}
+
+.tableContainer thead {
+  background-color: #6a0e00;
+  color: #fff;
+}
+
+/* Media Query */
+
+/* Small to 1000px */
+@media only screen and (max-width: 1000px) {
+}
+
+/* LG break */
+@media only screen and (max-width: 991px) {
+  .inputContainer input {
+    flex: 0 0 40%;
+  }
+}
+
+/* <800px */
+@media only screen and (max-width: 800px) {
+}
+
+/* Md breakpoint */
+@media only screen and (max-width: 767px) {
+}
+
+/* Medium Screen Device*/
+@media only screen and (max-width: 600px) {
+}
+
+/* Small Screen Device */
+@media only screen and (max-width: 350px) {
+}

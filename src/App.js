@@ -23,7 +23,8 @@ const MeetingEvents = React.lazy(() => import("./component/Meetings/index"));
 // Home Component
 const Home = React.lazy(() => import("./component/Home/index"));
 const Gallery = React.lazy(() => import("./component/Home/gallery/index"));
-
+// Law Documents Component
+const LawDocuments = React.lazy(() => import("./component/LawDocuments/index"));
 // Contact Component
 const Contact = React.lazy(() => import("./component/Contact/index"));
 // News Component
@@ -52,6 +53,7 @@ function App() {
           <Header></Header>
           <Suspense fallback={<Loading />}>
             <Switch>
+              {/* Contact Route */}
               <Route path="/contact">
                 <Contact />
               </Route>
@@ -68,7 +70,10 @@ function App() {
               <Route path="/previous-ministers">
                 <PreviousMinisters></PreviousMinisters>
               </Route>
-
+              {/* Document Route */}
+              <Route path="/law-documents">
+                <LawDocuments></LawDocuments>
+              </Route>
               {/* Root Route */}
               <Route path="/meeting">
                 <MeetingEvents />

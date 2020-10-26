@@ -10,8 +10,11 @@
 
 .filter {
   background-color: #fff;
-  padding: 5px;
+  padding: 3px;
+  padding-left: 5px;
   overflow: hidden;
+  display: flex;
+  justify-content: space-between;
 }
 
 .sortIcon {
@@ -60,7 +63,6 @@
   justify-content: space-around;
   align-items: center;
 }
-
 
 /* Card */
 .card {
@@ -112,29 +114,29 @@
 /* Media Query */
 
 /* Small to 1000px */
-@media only screen and (max-width: 1000px) {}
+@media only screen and (max-width: 1000px) {
+}
 
 /* LG break */
-@media only screen and (max-width: 991px) {}
+@media only screen and (max-width: 991px) {
+}
 
 /* <800px */
-@media only screen and (max-width: 800px) {}
+@media only screen and (max-width: 800px) {
+}
 
 /* Md breakpoint */
 @media only screen and (max-width: 767px) {
-  .filter div:first-child {
-    text-align: center;
-    padding-bottom: 5px;
-  }
-
   .filter div:last-child {
-    padding-left: 20px;
-    padding-top: 5px;
+    text-align: center;
+    padding-top: 5px !important;
   }
 }
 
 /* Medium Screen Device*/
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+}
 
 /* Small Screen Device */
-@media only screen and (max-width: 350px) {}
+@media only screen and (max-width: 350px) {
+}

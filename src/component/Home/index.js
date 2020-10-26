@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./home.module.css";
+import styles from "./index.module.css";
 import { Link } from "react-router-dom";
 import truncateString from "../../utils/truncateText";
 import extractionHtml from "../../utils/extractionHTML";
@@ -299,7 +299,7 @@ export class index extends Component {
                   </Link>
                 </div>
                 <div className={styles.activity}>
-                  <Link>
+                  <Link to="/law-documents">
                     <img src={Activity5} alt="" />
                     <p>
                       <span style={{ whiteSpace: "pre-line" }}>

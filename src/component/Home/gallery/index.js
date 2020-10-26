@@ -68,35 +68,37 @@ export default function () {
             <i class="fa fa-images mr-2"></i>
             បណ្ណាល័យរូបភាព
           </div>
-          <div className="col-md-4 col-sm-6 col-12">
-            <form
-              className="search"
-              style={{ position: "relative" }}
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSearchInput(e.target.firstChild.value.trim());
-              }}
-            >
-              <input
-                type="text"
-                name="search"
-                className="searchbox w-100"
-                placeholder="ស្វែងរក"
-                style={{ borderRadius: "10px" }}
-              />
-              <button className="search-img"></button>
-            </form>
-          </div>
-          <div className="col-md-4 col-sm-6 col-12">
-            តំរៀបតាមលំដាប់
-            <i
-              className={"fa fa-chevron-down mx-2 " + styles.sortIcon}
-              onClick={setOrder.bind(this, "desc")}
-            ></i>
-            <i
-              className={"fa fa-chevron-up " + styles.sortIcon}
-              onClick={setOrder.bind(this, "asc")}
-            ></i>
+          <div className="row col-md-8 justify-content-end">
+            <div className="col-lg-4 col-sm-6 col-12">
+              <form
+                className="search"
+                style={{ position: "relative" }}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setSearchInput(e.target.firstChild.value.trim());
+                }}
+              >
+                <input
+                  type="text"
+                  name="search"
+                  className="searchbox w-100"
+                  placeholder="ស្វែងរក"
+                  style={{ borderRadius: "10px" }}
+                />
+                <button className="search-img"></button>
+              </form>
+            </div>
+            <div className="col-lg-4 col-sm-6 col-12">
+              តំរៀបតាមលំដាប់
+              <i
+                className={"fa fa-chevron-down mx-2 " + styles.sortIcon}
+                onClick={setOrder.bind(this, "desc")}
+              ></i>
+              <i
+                className={"fa fa-chevron-up " + styles.sortIcon}
+                onClick={setOrder.bind(this, "asc")}
+              ></i>
+            </div>
           </div>
         </div>
         <div className={styles.category}>
