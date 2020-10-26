@@ -192,7 +192,11 @@ footer p {
 }
 
 /* <800px */
-@media only screen and (max-width: 800px) {}
+@media only screen and (max-width: 800px) {
+  #relatedNewsImageCustomized{
+    height: auto !important
+  }
+}
 
 /* Md breakpoint */
 @media only screen and (max-width: 767px) {}

@@ -55,7 +55,7 @@ export default function () {
             setRelateNews(data);
           });
       });
-  }, [id]);
+  }, [id, newsTypesData]);
 
   const renderCarousel = [];
   relateNews.forEach((v, i) => {
@@ -64,17 +64,33 @@ export default function () {
         key={`news-${i}`}
         to={`/news-event/${v.id}`}
         className={
-          "col-md-4 pr-0" + (i !== 0 && i !== 3 ? " d-none d-md-block" : "")
+          "col-md-4 " +
+          (i !== 0 && i !== 3 ? " clearfix d-none d-md-block " : " pr-0 ") +
+          (i == 1 || i == 4 ? " p-0 " : "") +
+          (i == 2 || i == 5 ? " pl-0 " : "")
         }
       >
-        <div className="card p-sm-3" style={{ border: 0 }}>
+        <div
+          className="card p-sm-3"
+          style={
+            i == 1 || i == 4
+              ? {
+                  border: 0,
+                  borderRight: "7px solid #eeeeee",
+                  borderLeft: "7px solid #eeeeee",
+                }
+              : { border: 0 }
+          }
+        >
           <img
-            className="card-img-top"
-            src={v.acf.image.sizes.medium}
+            className="card-img-top img-fluid"
+            src={v.acf.image.sizes["medium_large"]}
             alt="Card image cap"
+            style={{height: '160px'}}
+            id="relatedNewsImageCustomized"
           />
           <div className="card-body">
-            <p className="card-text">{truncateString(v.title.rendered, 180)}</p>
+            <p className="card-text">{(v.title.rendered).substr(0,86)+ "..."}</p>
           </div>
         </div>
       </Link>
