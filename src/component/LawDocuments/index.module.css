@@ -9,18 +9,20 @@
   text-align: center;
   color: #e53e3e;
   font-size: 2em;
+  margin-bottom: 0px !important;
 }
 
 .inputContainer {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.inputContainer input {
+.inputContainer div {
   margin-right: 20px;
   margin-bottom: 10px;
-  flex: 0 0 20%;
+  flex: 0 0 40%;
 }
 
 /* Table */
@@ -49,8 +51,9 @@
 
 /* LG break */
 @media only screen and (max-width: 991px) {
-  .inputContainer input {
-    flex: 0 0 40%;
+  .inputContainer div {
+    margin-bottom: 5px;
+    flex: 0 0 80%;
   }
 }
 
