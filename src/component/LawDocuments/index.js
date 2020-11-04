@@ -69,31 +69,29 @@ export class index extends Component {
           <table className="table table-striped table-bordered">
             <thead>
               <tr>
-                <th scope="col" width="120">
+                <th scope="col" width="110" style={{ minWidth: "100px" }}>
                   លេខសំគាល់
                 </th>
-                <th scope="col" width="300">
+                <th scope="col" width="330" style={{ minWidth: "330px" }}>
                   ឈ្មោះឯកសារ
                 </th>
-                <th scope="col" width="50">
+                <th scope="col" width="90" style={{ minWidth: "70px" }}>
                   ទំហំ
                 </th>
-                <th scope="col" width="120">
+                <th scope="col" width="130" style={{ minWidth: "110px" }}>
                   ថ្ងៃបោះពុម្ភ
                 </th>
-                <th scope="col" width="50">
+                <th scope="col" width="90" style={{ maxWidth: "90px" }}>
                   Pdf(ខ្មែរ)
                 </th>
-                <th scope="col" width="50">
+                <th scope="col" width="90" style={{ maxWidth: "90px" }}>
                   Pdf(អង់គ្លេស)
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row" className="align-middle">
-                  1
-                </th>
+                <td className="align-middle">2</td>
                 <td>
                   សេចក្តីថ្លែងអំណរគុណរបស់ឯកឧត្តម ព្រុំ សុខា
                   រដ្ឋមន្ត្រីក្រសួងមុខងារសាធារណៈ ប្រគេនព្រះថេរានុថេរៈ
@@ -114,27 +112,11 @@ export class index extends Component {
                   ></img>
                 </td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-              </tr>
             </tbody>
           </table>
-          {/* Pagination */}
-          <Paginate pageCount={1} />
         </div>
+        {/* Pagination */}
+        <Paginate pageCount={5} />
       </div>
     );
   }
