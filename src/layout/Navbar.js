@@ -50,12 +50,16 @@ export class Navbar extends Component {
                 <Link className="dropdown-item" to="/ministry-biography">
                   ជីវប្រវត្តិក្រសួង
                 </Link>
-                <Link className="dropdown-item">ជីវប្រវត្តិរដ្ឋមន្រ្ដី</Link>
-                <Link className="dropdown-item">រចនាសម្ព័ន្ឋក្រសួង</Link>
+                <Link className="dropdown-item" to="/404">
+                  ជីវប្រវត្តិរដ្ឋមន្រ្ដី
+                </Link>
+                <Link className="dropdown-item" to="/404">
+                  រចនាសម្ព័ន្ឋក្រសួង
+                </Link>
                 <Link className="dropdown-item" to="/previous-ministers">
                   រដ្ឋមន្រ្ដីក្រសួងយុត្តិធម៌ចាប់ពីឆ្នាំ(1993-បច្ចុប្បន្ន)
                 </Link>
-                <Link className="dropdown-item">
+                <Link className="dropdown-item" to="/404">
                   ព័ត៍មានមន្រ្តីរាជការក្រសួងយុត្តិធម៌
                 </Link>
               </div>
@@ -72,10 +76,18 @@ export class Navbar extends Component {
                 បណ្ដុំឯកសារ
               </Link>
               <div className="dropdown-menu " aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item">ច្បាប់និងបទបញ្ញត្តិ</Link>
-                <Link className="dropdown-item">សន្ទានុក្រមពាក្យច្បាប់</Link>
-                <Link className="dropdown-item">បណ្ណាល័យឯកសារ</Link>
-                <Link className="dropdown-item">Search Engine</Link>
+                <Link className="dropdown-item" to="/404">
+                  ច្បាប់និងបទបញ្ញត្តិ
+                </Link>
+                <Link className="dropdown-item" to="/404">
+                  សន្ទានុក្រមពាក្យច្បាប់
+                </Link>
+                <Link className="dropdown-item" to="/404">
+                  បណ្ណាល័យឯកសារ
+                </Link>
+                <Link className="dropdown-item" to="/404">
+                  Search Engine
+                </Link>
               </div>
             </li>
             <li className="nav-item dropdown ">
@@ -121,13 +133,15 @@ export class Navbar extends Component {
                 សេវាសាធារណៈ
               </Link>
               <div className="dropdown-menu " aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item">
+                <Link className="dropdown-item" to="/404">
                   ពាក្យស្នើសុំព្រឹត្តិបត្រថ្កាលទោស
                 </Link>
               </div>
             </li>
             <li className="nav-item">
-              <Link className="nav-link">ការបោះពុម្ពផ្សាយ</Link>
+              <Link className="nav-link" to="/404">
+                ការបោះពុម្ពផ្សាយ
+              </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/contact">

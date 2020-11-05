@@ -34,6 +34,10 @@ const SingleNews = React.lazy(() =>
   import("./component/News/SingleNews/index")
 );
 const Structure = React.lazy(() => import("./component/About/structure/index"));
+// Under Construction Component
+const UnderConstruction = React.lazy(() =>
+  import("./component/UnderConstruction/index")
+);
 
 function App() {
   const [newsTypes, setNewsTypes] = useState([]);
@@ -90,8 +94,11 @@ function App() {
               <Route path="/news/:types">
                 <News />
               </Route>
-              <Route path="/">
+              <Route exact path="/">
                 <Home />
+              </Route>
+              <Route path="*">
+                <UnderConstruction></UnderConstruction>
               </Route>
             </Switch>
           </Suspense>

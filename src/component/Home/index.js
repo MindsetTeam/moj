@@ -259,7 +259,7 @@ export class index extends Component {
               </div>
               <div className={styles.activities}>
                 <div className={styles.activity}>
-                  <Link>
+                  <Link to="/404">
                     <img src={Activity1} alt="" />
                     <p>
                       <span style={{ whiteSpace: "pre-line" }}>
@@ -269,7 +269,7 @@ export class index extends Component {
                   </Link>
                 </div>
                 <div className={styles.activity}>
-                  <Link>
+                  <Link to="/404">
                     <img src={Activity2} alt="" />
                     <p>
                       <span style={{ whiteSpace: "pre-line" }}>
@@ -279,7 +279,7 @@ export class index extends Component {
                   </Link>
                 </div>
                 <div className={styles.activity}>
-                  <Link>
+                  <Link to="/404">
                     <img src={Activity3} alt="" />
                     <p>
                       <span style={{ whiteSpace: "pre-line" }}>

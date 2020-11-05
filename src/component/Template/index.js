@@ -4,7 +4,7 @@ import styles from "./index.module.css";
 export class index extends Component {
   render() {
     return (
-      <div style={styles.templateContainer}>
+      <div className={styles.templateContainer}>
         <p>Template</p>
       </div>
     );
