@@ -9,7 +9,15 @@ import { colors } from "@material-ui/core";
 export class index extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      docs: [],
+    };
+  }
+  async componentDidMount() {
+    const docs = await fetch(
+      "http://demo.mcs.gov.kh/moj/wp-json/wp/v2/document?per_page=30&_fields=id,title,categories,acf&page=1"
+    ).then((res) => res.json());
+    this.setState({ docs });
   }
   render() {
     const top100Films = [
@@ -90,28 +98,47 @@ export class index extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="align-middle">2</td>
-                <td>
-                  សេចក្តីថ្លែងអំណរគុណរបស់ឯកឧត្តម ព្រុំ សុខា
-                  រដ្ឋមន្ត្រីក្រសួងមុខងារសាធារណៈ ប្រគេនព្រះថេរានុថេរៈ
-                  និងជូនចំពោះសម្តេច ឯកឧត្តម លោកជំទាវ
-                  ដែលមានសទ្ធាជ្រះថ្លាចូលរួមចាប់មគ្គផលបុណ្យកឋិនទាន
-                </td>
-                <td className="align-middle">120 KB</td>
-                <td className="align-middle">១៩/តុលា/២០២០</td>
-                <td className="align-middle">
-                  <img
-                    src={"http://www.moj.gov.kh/img/iconfinder_pdf_83985.png"}
-                  ></img>
-                </td>
-                <td className="align-middle">
-                  {" "}
-                  <img
-                    src={"http://www.moj.gov.kh/img/iconfinder_pdf_83985.png"}
-                  ></img>
-                </td>
-              </tr>
+              {this.state.docs.map((v) => {
+                return (
+                  <tr>
+                    <td className="align-middle">{v.acf.id_document || "មិនមាន"}</td>
+                    <td>{v.title.rendered}</td>
+                    <td className="align-middle">
+                      {Math.floor((v.acf.khmer_file.filesize/1000000))>0?`${(v.acf.khmer_file.filesize*0.00000095367432).toFixed(2)} MB`: `${Math.round(v.acf.khmer_file.filesize*0.0009765625)} KB`}
+                    </td>
+                    <td className="align-middle">{v.acf.published_date}</td>
+                    <td className="align-middle">
+                      <a href={v.acf.khmer_file.url}>
+                        <img
+                          alt="Khmer file url"
+                          style={
+                            v.acf.khmer_file ? {} : { filter: "grayscale(1)" }
+                          }
+                          src={
+                            "http://www.moj.gov.kh/img/iconfinder_pdf_83985.png"
+                          }
+                        ></img>
+                      </a>
+                    </td>
+                    <td className="align-middle">
+                      {" "}
+                      <a href={v.acf.english_file.url}>
+                        <img
+                          alt="English file url"
+                          style={
+                            !v.acf.english_file
+                              ? { filter: "grayscale(1)" }
+                              : {}
+                          }
+                          src={
+                            "http://www.moj.gov.kh/img/iconfinder_pdf_83985.png"
+                          }
+                        ></img>
+                      </a>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
