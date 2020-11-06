@@ -53,7 +53,7 @@ export class Navbar extends Component {
                 <Link className="dropdown-item" to="/404">
                   ជីវប្រវត្តិរដ្ឋមន្រ្ដី
                 </Link>
-                <Link className="dropdown-item" to="/404">
+                <Link className="dropdown-item" to="/structure">
                   រចនាសម្ព័ន្ឋក្រសួង
                 </Link>
                 <Link className="dropdown-item" to="/previous-ministers">
