@@ -27,6 +27,15 @@ export default function () {
   const [relateNews, setRelateNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [newsTypes, setNewsTypes] = useState("");
+  const [announcementData, setAnnouncementData] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      "http://demo.mcs.gov.kh/moj/wp-json/wp/v2/document?per_page=4&categories=18&_fields=id,title,acf"
+    )
+      .then((res) => res.json())
+      .then((data) => setAnnouncementData(data));
+  }, []);
   useEffect(() => {
     setLoading(true);
     fetch(
@@ -86,11 +95,13 @@ export default function () {
             className="card-img-top img-fluid"
             src={v.acf.image.sizes["medium_large"]}
             alt="Card image cap"
-            style={{height: '160px'}}
+            style={{ height: "160px" }}
             id="relatedNewsImageCustomized"
           />
           <div className="card-body">
-            <p className="card-text">{(v.title.rendered).substr(0,86)+ "..."}</p>
+            <p className="card-text">
+              {v.title.rendered.substr(0, 86) + "..."}
+            </p>
           </div>
         </div>
       </Link>
@@ -239,134 +250,45 @@ export default function () {
               សេចក្ដីជូនដំណឹង
             </div>
             <div className="daily-news row">
-              <div
-                className="each-daily-news col-12 mb-2"
-                style={{ borderBottom: "2px solid #eeeeee" }}
-              >
+              {announcementData.map((v, i) => (
                 <div
-                  className="each-daily-news-thumbnail m-2"
-                  style={{ width: "35%", height: "100%" }}
+                  className="each-daily-news col-12 mb-2"
+                  style={{
+                    borderBottom:
+                      i == announcementData.length - 1
+                        ? ""
+                        : "2px solid #eeeeee",
+                  }}
                 >
-                  <img
-                    className="p-2 "
-                    src="http://www.moj.gov.kh/files/announcements/1597291724photo_2020-08-13_10-49-05.jpg"
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      boxShadow: "7px 7px 7px -5px rgba(214, 214, 214, 1)",
-                    }}
-                  />
+                  <div
+                    className="each-daily-news-thumbnail m-2"
+                    style={{ width: "35%", height: "100%" }}
+                  >
+                    <Link to={`/law-documents/${v.id}`}>
+                      <img
+                        className="p-2 "
+                        src={v.acf.featured_image_announcement.url}
+                        alt=""
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          boxShadow: "4px 4px 4px -5px rgba(214, 214, 214, 1)",
+                        }}
+                      />
+                    </Link>
+                  </div>
+                  <div
+                    className="each-daily-news-info py-lg-1"
+                    style={{ width: "70%" }}
+                  >
+                    <Link to={`/law-documents/${v.id}`}>
+                      <h1 className="each-daily-news-info-title">
+                        <a href="#">{v.title.rendered.slice(0, 131) + "..."}</a>
+                      </h1>
+                    </Link>
+                  </div>
                 </div>
-                <div
-                  className="each-daily-news-info py-lg-1"
-                  style={{ width: "70%" }}
-                >
-                  <h1 className="each-daily-news-info-title">
-                    <a href="#">
-                      ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
-                      នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
-                      នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សី...
-                    </a>
-                  </h1>
-                </div>
-              </div>
-
-              <div
-                className="each-daily-news col-12 mb-2"
-                style={{ borderBottom: "2px solid #eeeeee" }}
-              >
-                <div
-                  className="each-daily-news-thumbnail m-2"
-                  style={{ width: "35%", height: "100%" }}
-                >
-                  <img
-                    className="p-2"
-                    src="http://www.moj.gov.kh/files/announcements/1597291724photo_2020-08-13_10-49-05.jpg"
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      boxShadow: "7px 7px 7px -5px rgba(214, 214, 214, 1)",
-                    }}
-                  />
-                </div>
-                <div
-                  className="each-daily-news-info py-lg-1"
-                  style={{ width: "70%" }}
-                >
-                  <h1 className="each-daily-news-info-title">
-                    <a href="#">
-                      ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
-                      នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
-                      នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សី...
-                    </a>
-                  </h1>
-                </div>
-              </div>
-
-              <div
-                className="each-daily-news col-12 mb-2"
-                style={{ borderBottom: "2px solid #eeeeee" }}
-              >
-                <div
-                  className="each-daily-news-thumbnail m-2"
-                  style={{ width: "35%", height: "100%" }}
-                >
-                  <img
-                    className="p-2"
-                    src="http://www.moj.gov.kh/files/announcements/1597291724photo_2020-08-13_10-49-05.jpg"
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      boxShadow: "7px 7px 7px -5px rgba(214, 214, 214, 1)",
-                    }}
-                  />
-                </div>
-                <div
-                  className="each-daily-news-info py-lg-1"
-                  style={{ width: "70%" }}
-                >
-                  <h1 className="each-daily-news-info-title">
-                    <a href="#">
-                      ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
-                      នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
-                      នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សី...
-                    </a>
-                  </h1>
-                </div>
-              </div>
-
-              <div className="each-daily-news col-12 mb-2">
-                <div
-                  className="each-daily-news-thumbnail m-2"
-                  style={{ width: "35%", height: "100%" }}
-                >
-                  <img
-                    className="p-2"
-                    src="http://www.moj.gov.kh/files/announcements/1597291724photo_2020-08-13_10-49-05.jpg"
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      boxShadow: "7px 7px 7px -5px rgba(214, 214, 214, 1)",
-                    }}
-                  />
-                </div>
-                <div
-                  className="each-daily-news-info py-lg-1"
-                  style={{ width: "70%" }}
-                >
-                  <h1 className="each-daily-news-info-title">
-                    <a href="#">
-                      ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
-                      នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
-                      នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សី...
-                    </a>
-                  </h1>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 

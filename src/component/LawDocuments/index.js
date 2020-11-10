@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+
 import styles from "./index.module.css";
 
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -7,29 +9,27 @@ import Paginate from "../Shared/Pagination";
 import Loading from "../Shared/Loading";
 import { colors } from "@material-ui/core";
 
+let debounceTimer;
+const debounce = (func, delay) => {
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => func.apply(context, args), delay);
+  };
+};
+
 export default function () {
+  let history = useHistory();
   const [pageNum, setPageNum] = useState(1);
   const [docs, setDocs] = useState([]);
   const [totalPage, setTotalPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [docsCategories, setDocsCategories] = useState([{ name: "ទាំងអស់" }]);
-  const [categoryTypes, setCategoryTypes] = useState(null)
+  const [categoryTypes, setCategoryTypes] = useState(null);
+  const [inputSearch, setInputSearch] = useState("");
+  const [docsSearchData, setDocsSearchData] = useState([]);
 
-  // const top100Films = [
-  //   { title: "The Shawshank Redemption", year: 1994 },
-  //   { title: "The Godfather", year: 1972 },
-  //   { title: "The Godfather: Part II", year: 1974 },
-  //   { title: "The Dark Knight", year: 2008 },
-  // ];
-
-  // const defaultProps = {
-  //   options: top100Films,
-  //   getOptionLabel: (option) => option.title,
-  // };
-
-  // const flatProps = {
-  //   options: top100Films.map((option) => option.title),
-  // };
   useEffect(() => {
     const fetchCategories = async () => {
       const dataCategories = [{ name: "ទាំងអស់" }];
@@ -58,7 +58,9 @@ export default function () {
     setIsLoading(true);
     let totalPage = 0;
     fetch(
-      `http://demo.mcs.gov.kh/moj/wp-json/wp/v2/document?per_page=1&_fields=id,title,categories,acf&page=${pageNum}&categories=${categoryTypes||""}`
+      `http://demo.mcs.gov.kh/moj/wp-json/wp/v2/document?search=${inputSearch}&per_page=30&_fields=id,title,categories,acf&page=${pageNum}&categories=${
+        categoryTypes || ""
+      }`
     )
       .then((res) => {
         totalPage = res.headers.get("x-wp-totalpages");
@@ -72,7 +74,7 @@ export default function () {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [pageNum,categoryTypes]);
+  }, [pageNum, categoryTypes, inputSearch]);
   const changePageNum = (num) => {
     setPageNum(num.selected + 1);
   };
@@ -86,7 +88,7 @@ export default function () {
             getOptionLabel={(option) => option.name}
             defaultValue={docsCategories[0]}
             disableClearable
-            onChange={(e,value)=>{
+            onChange={(e, value) => {
               setCategoryTypes(value.id);
             }}
             renderInput={(params) => {
@@ -105,9 +107,76 @@ export default function () {
         </div>
         <div>
           <Autocomplete
-            // {...defaultProps}
-            id="debug"
-            debug
+            options={docsSearchData}
+            getOptionLabel={(option) => option.title.rendered.slice(0, 100)}
+            // renderOption={(option) => (
+            //   <React.Fragment>
+            //     <Link to={option.name}>{option.name}</Link>
+            //   </React.Fragment>
+            // )}
+            onInput={(e) => {
+              let value = e.target.value;
+              setDocsSearchData([
+                {
+                  id: "all",
+                  title: {
+                    rendered: `Show all result: ` + value,
+                  },
+                },
+              ]);
+
+              if (value) {
+                debounce(function () {
+                  fetch(
+                    `http://demo.mcs.gov.kh/moj/wp-json/wp/v2/document?search=${value}&per_page=5&_fields=id,title`
+                  )
+                    .then((res) => {
+                      return res.json();
+                    })
+                    .then((docs) => {
+                      console.log([
+                        ...docs,
+                        {
+                          id: "all",
+                          title: {
+                            rendered: `Show all result: ` + value,
+                          },
+                        },
+                      ]);
+                      setDocsSearchData([
+                        ...docs,
+                        {
+                          id: "all",
+                          title: {
+                            rendered: `Show all result: ` + value,
+                          },
+                        },
+                      ]);
+                    });
+                }, 200)();
+              } else {
+                clearTimeout(debounceTimer);
+                setDocsSearchData([]);
+              }
+            }}
+            onChange={(e, value) => {
+              if (value) {
+                if (value.id == "all") {
+                  const searchValue = value.title.rendered.split(
+                    "Show all result: "
+                  )[1];
+                  value.title = {
+                    rendered: searchValue,
+                  };
+                  setInputSearch(searchValue);
+                  setDocsSearchData([]);
+                } else {
+                  history.push("/law-documents/" + value.id);
+                }
+              } else {
+                setInputSearch("");
+              }
+            }}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -153,7 +222,14 @@ export default function () {
                     <td className="align-middle">
                       {v.acf.id_document || "មិនមាន"}
                     </td>
-                    <td>{v.title.rendered}</td>
+                    <td>
+                      <Link
+                        to={`/law-documents/${v.id}`}
+                        style={{ color: "inherit" }}
+                      >
+                        {v.title.rendered}
+                      </Link>
+                    </td>
                     <td className="align-middle">
                       {Math.floor(v.acf.khmer_file.filesize / 1000000) > 0
                         ? `${(

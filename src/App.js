@@ -25,6 +25,9 @@ const Home = React.lazy(() => import("./component/Home/index"));
 const Gallery = React.lazy(() => import("./component/Home/gallery/index"));
 // Law Documents Component
 const LawDocuments = React.lazy(() => import("./component/LawDocuments/index"));
+const SingleLawDocument = React.lazy(() =>
+  import("./component/LawDocuments/id/index")
+);
 // Contact Component
 const Contact = React.lazy(() => import("./component/Contact/index"));
 // News Component
@@ -75,6 +78,9 @@ function App() {
                 <PreviousMinisters></PreviousMinisters>
               </Route>
               {/* Document Route */}
+              <Route path="/law-documents/:id">
+                <SingleLawDocument></SingleLawDocument>
+              </Route>
               <Route path="/law-documents">
                 <LawDocuments></LawDocuments>
               </Route>
