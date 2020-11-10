@@ -29,3 +29,68 @@
 .contact-info .row h5 {
   font-weight: bolder;
 }
+
+/* Messenger */
+.messenger {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.messengerImg {
+  max-width: 300px;
+  border: 1px solid #ddd;
+}
+
+.messengerInfo {
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.messengerInfo a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.messengerInfo h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.messengerInfo i {
+  color: #e53e3e;
+  font-size: 15px;
+  margin-right: 9px;
+}
+
+/* Media Query */
+
+/* Small to 1000px */
+@media only screen and (max-width: 1000px) {
+}
+
+/* <800px */
+@media only screen and (max-width: 800px) {
+}
+
+/* Md breakpoint */
+@media only screen and (max-width: 767px) {
+  .messenger {
+    justify-content: center;
+  }
+
+  .messengerInfo {
+    margin-left: 0;
+    padding-top: 20px;
+  }
+}
+
+/* Medium Screen Device*/
+@media only screen and (max-width: 600px) {
+}
+
+/* Small Screen Device */
+@media only screen and (max-width: 350px) {
+}

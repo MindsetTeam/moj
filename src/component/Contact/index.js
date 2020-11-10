@@ -16,10 +16,51 @@ import Telegram from "../../asset/telegram.png";
 import Facebook from "../../asset/facebook.png";
 import Youtube from "../../asset/youtube.png";
 
+import ChinMalin from "../../asset/contact/he/chin_malin.jpg";
+import KimSantepheap from "../../asset/contact/he/kim_santepheap.jpg";
+import SanSophorn from "../../asset/contact/he/san_sophorn.jpg";
+
 function messenger() {
   return (
     <div style={{ fontFamily: "hanuman" }} className="p-2">
-      <h1>hi</h1>
+      <div className={styles.messenger}>
+          <img src={KimSantepheap} className={styles.messengerImg}></img>
+          <div className={styles.messengerInfo}>
+            <h1>ឯកឧត្តម គឹម សន្តិភាព</h1>
+            <div style={{marginTop:'15px'}}>
+              <p><i class="fas fa-phone-alt"></i> +855 12 76 9999</p>
+              <p><i class="fab fa-facebook-f"></i> <a target="_blank" href="https://www.facebook.com/peacemoj">www.facebook.com/peacemoj</a></p>
+              <p><i class="fab fa-whatsapp"></i> +855 12 76 9999</p>
+              <p><i class="fab fa-telegram-plane"></i> +855 12 76 9999</p>
+            </div>
+          </div>
+      </div>
+      <hr></hr>
+      <div className={styles.messenger}>
+          <img src={SanSophorn} className={styles.messengerImg}></img>
+          <div className={styles.messengerInfo}>
+            <h1>ឯកឧត្តម សន សោភ័ណ</h1>
+            <div style={{marginTop:'15px'}}>
+              <p><i class="fas fa-phone-alt"></i> +855 12 79 73 72</p>
+              <p><i class="fab fa-facebook-f"></i> #</p>
+              <p><i class="fab fa-whatsapp"></i> +855 12 79 73 72</p>
+              <p><i class="fab fa-telegram-plane"></i> +855 12 79 73 72</p>
+            </div>
+          </div>
+      </div>
+      <hr></hr>
+      <div className={styles.messenger}>
+          <img src={ChinMalin} className={styles.messengerImg}></img>
+          <div className={styles.messengerInfo}>
+            <h1>ឯកឧត្តម ជិន ម៉ាលីន</h1>
+            <div style={{marginTop:'15px'}}>
+              <p><i class="fas fa-phone-alt"></i> +855 61 666 778</p>
+              <p><i class="fab fa-facebook-f"></i> <a target="_blank" href="https://www.facebook.com/malin.chin.9">www.facebook.com/malin.chin.9</a></p>
+              <p><i class="fab fa-whatsapp"></i> +855 61 666 778</p>
+              <p><i class="fab fa-telegram-plane"></i> +855 61 666 778</p>
+            </div>
+          </div>
+      </div>
     </div>
   );
 }
@@ -211,7 +252,7 @@ export default function () {
               label="ទំនាក់ទំនងសាធារណៈ"
               style={{
                 fontFamily: "hanuman",
-                fontSize: "1.3em",
+                fontSize: "1.1em",
                 fontWeight: "bold",
                 outline: "none",
                 marginRight: "20px",
@@ -221,7 +262,7 @@ export default function () {
               label="អ្នកនាំពាក្យ"
               style={{
                 fontFamily: "hanuman",
-                fontSize: "1.3em",
+                fontSize: "1.1em",
                 outline: "none",
                 fontWeight: "bold",
               }}
