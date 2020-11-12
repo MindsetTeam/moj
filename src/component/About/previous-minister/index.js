@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import styles from "./index.module.css";
 
 // Import assets
-import Img93_98 from "../../../asset/about/ministers/noImg.jpg";
-import Img99_01 from "../../../asset/about/ministers/noImg.jpg";
+import Img93_98 from "../../../asset/about/ministers/img651.JPG";
+import Img99_01 from "../../../asset/about/ministers/Layer1.jpg";
 import Img02_17 from "../../../asset/about/ministers/2002-2017.jpg";
-import Img17_20 from "../../../asset/about/ministers/2017-2020.jpg";
+import Img17_20 from "../../../asset/about/ministers/noImg.jpg";
 import Img20 from "../../../asset/about/ministers/2020.jpg";
 
 export class index extends Component {
@@ -59,7 +59,7 @@ export class index extends Component {
               <div className={"py-3 m-0 " + styles.minister}>
                 <div style={{ width: "40%", height: "100%" }}>
                   <img
-                    src={Img17_20}
+                    src={Img02_17}
                     alt=""
                     style={{ width: "100%", height: "100%" }}
                   />
@@ -77,7 +77,7 @@ export class index extends Component {
               <div className={"py-3 m-0 " + styles.minister}>
                 <div style={{ width: "40%", height: "100%" }}>
                   <img
-                    src={Img02_17}
+                    src={Img17_20}
                     alt=""
                     style={{ width: "100%", height: "100%" }}
                   />
