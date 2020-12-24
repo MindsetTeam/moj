@@ -16,6 +16,18 @@
   font-weight: "600";
   font-size: 1.1em;
 }
+
+.formInputButton {
+  font-family: "hanuman";
+  padding: 5px;
+}
+
+.formTitle {
+  font-family: "hanuman";
+  font-weight: "600";
+  font-size: 1.1em;
+}
+
 /* Media Query */
 
 /* Small to 1000px */

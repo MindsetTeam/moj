@@ -59,7 +59,7 @@ export default function () {
   return (
     <div className={styles.templateContainer}>
       <form className={classes.root} noValidate autoComplete="off">
-        <p className={styles.cvTitle + " mb-0"}>ពត័មានផ្ទាល់ខ្លួន</p>
+        <p className={styles.cvTitle + " mb-0"}>ព័ត៌មានផ្ទាល់ខ្លួន</p>
         <TextField
           id="standard-basic"
           label="នាមត្រកូល និង​ នាមខ្លួន"
@@ -171,7 +171,7 @@ export default function () {
           style={{ width: "100%" }}
         />
         {/* Father */}
-        <p className={styles.cvTitle + " mb-0"}>ពត័មានឪពុក</p>
+        <p className={styles.cvTitle + " mb-0"}>ព័ត៌មានឪពុក</p>
         <TextField
           id="standard-basic"
           label="ឪពុកឈ្មោះ"
@@ -285,7 +285,7 @@ export default function () {
           style={{ width: "100%" }}
         />
         {/* Mother */}
-        <p className={styles.cvTitle + " mb-0"}>ពត័មានម្ដាយ</p>
+        <p className={styles.cvTitle + " mb-0"}>ព័ត៌មានម្ដាយ</p>
         <TextField
           id="standard-basic"
           label="ម្ដាយឈ្មោះ"
@@ -399,7 +399,7 @@ export default function () {
           style={{ width: "100%" }}
         />
         {/* Spouse  */}
-        <p className={styles.cvTitle + " mb-0"}>ពត័មានប្ដី ឫប្រពន្ធ</p>
+        <p className={styles.cvTitle + " mb-0"}>ព័ត៌មានប្ដី ឫប្រពន្ធ</p>
 
         <TextField
           id="standard-basic"
