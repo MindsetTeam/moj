@@ -37,7 +37,7 @@ const MutipleSlidesPerView = (props) => {
         <img
           className="img-fluid gallery-subImg"
           src={v}
-          style={{ listStyle: "none" }}
+          style={{ listStyle: "none", objectFit: 'cover' }}
         />
       </div>
     );

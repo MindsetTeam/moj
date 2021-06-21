@@ -13,6 +13,7 @@ import extractionHtml from "../../../utils/extractionHTML";
 import truncateString from "../../../utils/truncateText";
 import convertToKhmer from "../../../utils/convertToKhmer";
 import NewsContext from "../../../context/newsTypes";
+import { MergeTypeSharp } from "@material-ui/icons";
 
 const convertISODatetoKhmer = (date) => {
   const dateKh = convertToKhmer.dateToKhmer(date);
@@ -27,6 +28,7 @@ export default function () {
   const [relateNews, setRelateNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [newsTypes, setNewsTypes] = useState("");
+  const [newsTypesArr, setNewsTypesArr] = useState([])
   const [announcementData, setAnnouncementData] = useState([]);
 
   useEffect(() => {
@@ -47,9 +49,13 @@ export default function () {
         return res.json();
       })
       .then((data) => {
+        
+        const newsTypesArrFilter= data?.categories.map(v=> newsTypesData.find(singleType=>singleType.id ===v));
+        console.log(newsTypesArrFilter);
         const newstypes = newsTypesData.filter((v) =>
           data.categories.includes(v.id)
         )[0];
+        setNewsTypesArr(newsTypesArrFilter);
         setNewsTypes(newstypes);
         setMainImage(data.acf.image.url);
         setNewsData(data);
@@ -112,17 +118,31 @@ export default function () {
       <div className="row mt-2">
         <div className="col-lg-9">
           <div className="latest-news-container">
-            <div className="title mb-1 p-1 px-2 pt-2 d-flex justify-content-between">
+            <div className="title mb-1 p-1 px-2 pt-2 d-flex justify-content-between" style={{fontSize: "15px"}}>
               <p className="m-0">
                 <span
                   className="fa fa-bullhorn pr-2"
                   style={{ borderRight: "3px solid red", fontSize: "1.3em" }}
                 ></span>{" "}
                 <Link to={`/news/all`} style={{ color: "inherit" }}>
-                  ព័ត៌មានទាំងអស់
+                ព័ត៌មាននិងឯកសារ
                 </Link>{" "}
                 /{" "}
+                {newsTypesArr.map((v,i)=>{
+                return <>
                 <Link
+                to={{
+                  pathname: `/news/${v?.slug}`,
+                  state: { id: v?.id },
+                }}
+                style={{ color: "inherit" }}
+              >
+                {v?.name}
+              </Link>
+              {i=== newsTypesArr.length-1 || ' | '}
+              </>
+                })}
+                {/* <Link
                   to={{
                     pathname: `/news/${newsTypes?.slug}`,
                     state: { id: newsTypes?.id },
@@ -130,7 +150,7 @@ export default function () {
                   style={{ color: "inherit" }}
                 >
                   {newsTypes?.name}
-                </Link>{" "}
+                </Link>{" "} */}
               </p>
               <p className="m-0 d-none d-sm-block">
                 <i className="fa fa-calendar" aria-hidden="true"></i>{" "}
@@ -272,6 +292,7 @@ export default function () {
                         style={{
                           width: "100%",
                           height: "100%",
+                          objectFit: 'cover',
                           boxShadow: "4px 4px 4px -5px rgba(214, 214, 214, 1)",
                         }}
                       />
