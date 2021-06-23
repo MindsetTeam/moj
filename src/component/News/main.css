@@ -3,8 +3,7 @@
   padding: 0;
 }
 
-
- ព័ត៌មានទាក់ទង
+/* ព័ត៌មានទាក់ទង */
 
 .borderRed {
   border-right: 7px solid red;
@@ -20,7 +19,7 @@
 
 body {
   background-color: #eee !important;
-  font-family: 'Hanuman', serif !important;
+  font-family: "Hanuman", serif !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
 }
@@ -39,7 +38,7 @@ body {
 
 /* Serach */
 .searchbox {
-  transition: border .2s linear;
+  transition: border 0.2s linear;
   font-size: 12px;
   width: 50%;
   background: #f5f8fa;
@@ -58,22 +57,21 @@ body {
 }
 
 .searchbox:focus {
-  transition: border .2s linear;
+  transition: border 0.2s linear;
   border: 2px solid #e53e3e;
 }
 
-.dropdown:hover>.dropdown-menu {
+.dropdown:hover > .dropdown-menu {
   display: block;
 }
 
-.dropdown>.dropdown-toggle:active {
+.dropdown > .dropdown-toggle:active {
   /*Without this, clicking will make it sticky*/
   pointer-events: none;
 }
 
-
 .search-img {
-  background-image: url('../../asset/search.png');
+  background-image: url("../../asset/search.png");
   width: 17px;
   height: 17px;
   display: inline-block;
@@ -108,7 +106,7 @@ body {
 .img-header {
   width: 100%;
   height: 200px;
-  background-image: url('../../asset/headerImg.jpg');
+  background-image: url("../../asset/headerImg.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -141,11 +139,6 @@ body {
   margin: 0 !important;
 }
 
-
-
-
-
-
 /* Footer */
 footer {
   height: 50px;
@@ -166,7 +159,7 @@ footer p {
 /* Small to 1000px */
 @media only screen and (max-width: 1000px) {
   .searchbox {
-    transition: border .2s linear;
+    transition: border 0.2s linear;
     font-size: 12px;
     width: 50%;
     background: #f5f8fa;
@@ -195,16 +188,18 @@ footer p {
 
 /* <800px */
 @media only screen and (max-width: 800px) {
-  #relatedNewsImageCustomized{
-    height: auto !important
+  #relatedNewsImageCustomized {
+    height: auto !important;
   }
 }
 
 /* Md breakpoint */
-@media only screen and (max-width: 767px) {}
+@media only screen and (max-width: 767px) {
+}
 
 /* Medium Screen Device*/
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+}
 
 /* Small Screen Device */
 @media only screen and (max-width: 350px) {
