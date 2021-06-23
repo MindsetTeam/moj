@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styles from "./index.module.css";
 
 import TextField from "@material-ui/core/TextField";

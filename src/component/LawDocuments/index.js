@@ -7,7 +7,6 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import Paginate from "../Shared/Pagination";
 import Loading from "../Shared/Loading";
-import { colors } from "@material-ui/core";
 
 let debounceTimer;
 const debounce = (func, delay) => {
@@ -161,7 +160,7 @@ export default function () {
             }}
             onChange={(e, value) => {
               if (value) {
-                if (value.id == "all") {
+                if (value.id === "all") {
                   const searchValue = value.title.rendered.split(
                     "Show all result: "
                   )[1];

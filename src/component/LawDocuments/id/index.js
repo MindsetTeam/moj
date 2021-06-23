@@ -102,6 +102,7 @@ export default function () {
                   <div className="  pt-lg-2 ">
                     {lawDocData?.acf["khmer_file"] ? (
                       <iframe
+                      title="DocFileKH"
                         src={`https://docs.google.com/gview?url=${lawDocData?.acf["khmer_file"].url}&embedded=true`}
                         style={{
                           width: `${(widthContainerPdf || 800) + 20}px`,
@@ -115,8 +116,9 @@ export default function () {
 
                     {lawDocData?.acf["english_file"] ? (
                       <React.Fragment>
-                        <p class="pl-4">ឯកសារភាសាអង់គ្លេស</p>
+                        <p className="pl-4">ឯកសារភាសាអង់គ្លេស</p>
                         <iframe
+                        title="DocFileEN"
                           src={`https://docs.google.com/gview?url=${lawDocData?.acf["english_file"].url}&embedded=true`}
                           style={{
                             width: `${(widthContainerPdf || 800) + 20}px`,
@@ -148,7 +150,7 @@ export default function () {
                   className="each-daily-news col-12 mb-2"
                   style={{
                     borderBottom:
-                      i == announcementData.length - 1
+                      i === announcementData.length - 1
                         ? ""
                         : "2px solid #eeeeee",
                   }}
@@ -176,7 +178,7 @@ export default function () {
                   >
                     <Link to={`/law-documents/${v.id}`}>
                       <h1 className="each-daily-news-info-title">
-                        <a href="#">{v.title.rendered.slice(0, 131) + "..."}</a>
+                        <a href="#foo">{v.title.rendered.slice(0, 131) + "..."}</a>
                       </h1>
                     </Link>
                   </div>
@@ -195,25 +197,25 @@ export default function () {
             </div>
             <div className="activities">
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity1} alt="" />
                   <p>ពាក្យស្នើសុំព្រឺតិ្តបត្រថ្កោលទោស</p>
                 </a>
               </div>
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity2} alt="" />
                   <p>យុទ្ធការដោះស្រាយការកកស្ទះសំណុំរឿង</p>
                 </a>
               </div>
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity3} alt="" />
                   <p>លេខាធិការដ្ឋានសាលាដំបូងរាជធានី-ខេត្ត</p>
                 </a>
               </div>
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity4} alt="" />
                   <p>កាលវិភាគប្រជុំរបស់ក្រសួងយុត្តិធម៌</p>
                 </a>

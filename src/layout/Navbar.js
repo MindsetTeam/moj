@@ -13,12 +13,11 @@ export class Navbar extends Component {
     this.setState({
       newTypes: data,
     });
-    console.log(this.state.newTypes);
   }
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light p-lg-0">
-        <Link className="navbar-brand d-lg-none p-lg-0 p-sm-2">មាតិកា</Link>
+        <Link className="navbar-brand d-lg-none p-lg-0 p-sm-2" to="#">មាតិកា</Link>
         <button
           className="navbar-toggler"
           type="button"

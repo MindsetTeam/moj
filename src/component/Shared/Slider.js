@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import Swiper from "react-id-swiper";
 import "swiper/css/swiper.css";
@@ -38,6 +38,7 @@ const MutipleSlidesPerView = (props) => {
           className="img-fluid gallery-subImg"
           src={v}
           style={{ listStyle: "none", objectFit: 'cover' }}
+          alt=""
         />
       </div>
     );

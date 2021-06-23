@@ -26,6 +26,7 @@ export default function (props) {
         <img
           className={styles.thumbnail}
           src={props.data?.acf["featured_image"].url}
+          alt=""
         ></img>
         <div className={styles.cardBody}>
           <p> {truncateString(props.data.title.rendered, 170)}</p>
@@ -44,7 +45,7 @@ export default function (props) {
       </div>
       {/* Modal */}
       <div
-        class="modal fade "
+        className="modal fade "
         id={"exampleModalCenter" + props.data?.id}
         tabindex="-1"
         role="dialog"
@@ -52,11 +53,11 @@ export default function (props) {
         aria-hidden="true"
       >
         <div
-          class="modal-dialog modal-dialog-centered modal-xl"
+          className="modal-dialog modal-dialog-centered modal-xl"
           role="document"
         >
-          <div class="modal-content">
-            <div class="modal-body p-0">
+          <div className="modal-content">
+            <div className="modal-body p-0">
               <div className="pt-0 pt-md-0 py-md-3 px-lg-5 px-4">
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
@@ -82,6 +83,7 @@ export default function (props) {
                     src={mainImage}
                     className="img-fluid py-1"
                     style={{ width: "100%" }}
+                    alt=""
                   />
                 </div>
               </div>

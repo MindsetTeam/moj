@@ -57,6 +57,7 @@ export class index extends Component {
               this.titleNews.push({ id: v.id, title: v.title.rendered });
               return (
                 <li
+                key={i}
                   data-target="#carouselExampleIndicators"
                   data-slide-to={i}
                   className={i === 0 ? "active" : ""}
@@ -110,6 +111,7 @@ export class index extends Component {
             {this.state.featuredNews.map((v, i) => {
               return (
                 <div
+                key={i}
                   className={
                     "carousel-item " +
                     styles.carouselItem +
@@ -169,8 +171,8 @@ export class index extends Component {
                 (Covid-19)
               </a>
               */}
-              {this.titleNews.map((v) => {
-                return <Link to={`/news-event/${v.id}`}>{v.title}</Link>;
+              {this.titleNews.map((v,i) => {
+                return <Link key={i} to={`/news-event/${v.id}`}>{v.title}</Link>;
               })}
             </marquee>
           </div>
@@ -234,16 +236,16 @@ export class index extends Component {
             >
               <ul>
                 <li>
-                  <Link>សកម្មភាពរដ្ឋមន្រ្ដី</Link>
+                  <Link to="/">សកម្មភាពរដ្ឋមន្រ្ដី</Link>
                 </li>
                 <li>
-                  <Link>សកម្មភាពថ្នាក់ដឹកនាំ</Link>
+                  <Link to="/">សកម្មភាពថ្នាក់ដឹកនាំ</Link>
                 </li>
                 <li>
-                  <Link>សុន្ទរកថារដ្ឋមន្រ្ដី</Link>
+                  <Link to="/">សុន្ទរកថារដ្ឋមន្រ្ដី</Link>
                 </li>
                 <li>
-                  <Link>សេចក្ដីប្រកាសព័ត៌មាន</Link>
+                  <Link to="/">សេចក្ដីប្រកាសព័ត៌មាន</Link>
                 </li>
               </ul>
             </div>
@@ -414,7 +416,9 @@ export class index extends Component {
               <div className={"row px-3 " + styles.dailyNews}>
                 {this.state.latestNews.slice(1).map((v, i) => {
                   return (
-                    <React.Fragment>
+                    <React.Fragment 
+                    key={i}
+                    >
                       <div
                         className={
                           "col-md-6 col-12 py-4 px-2 m-0 " +
@@ -487,17 +491,17 @@ export class index extends Component {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"
                       />
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"
                       />
                     </svg>
                   </div>
                   <div className="ml-1">
-                    <Link>
+                    <Link to="/">
                       សារថ្វាយព្រះពរ របស់ថ្នាក់ដឹកនាំ និងមន្ត្រី នៃសាលាឧទ្ធរណ៍
                       និងមហាអយ្យការអមសាលាឧទ្ធរណ៍ព្រះសីហនុ​
                       ក្រាបបង្គំទូលថ្វាយសម្តេចព្រះមហាក្សត្រី....
@@ -515,17 +519,17 @@ export class index extends Component {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"
                       />
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"
                       />
                     </svg>
                   </div>
                   <div className="ml-1">
-                    <Link>
+                    <Link to="/">
                       សារលិខិតចូលរួមរំលែកទុក្ខរបស់ឯកឧត្តមរដ្ឋមន្រ្តី
                       ក្រសួងយុត្តិធម៌ ជូនចំពោះ លោកជំទាវ សួស ណារ៉ា ហ៊ឹម ឆែម
                       ព្រមទាំងក្រុមគ្រួសារ
@@ -544,17 +548,17 @@ export class index extends Component {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"
                       />
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"
                       />
                     </svg>
                   </div>
                   <div className="ml-1">
-                    <Link>
+                    <Link to="/">
                       សេចក្តីប្រកាសព័ត៌មានរបស់អ្នកនាំពាក្យរបស់ អយ្យការ
                       អមសាលាដំបូងខេត្តស្វាយ រៀង បំភ្លឹអំពីការចុះផ្សាយរបស់
                       គេហទំព័រព័ត៌មាន...
@@ -572,17 +576,17 @@ export class index extends Component {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"
                       />
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M4 8a.5.5 0 0 1 .5-.5H11a.5.5 0 0 1 0 1H4.5A.5.5 0 0 1 4 8z"
                       />
                     </svg>
                   </div>
                   <div className="ml-1">
-                    <Link>
+                    <Link to="/">
                       សេចក្តីជូនដំណឹងរបស់ក្រសួងយុត្តិធម៌
                       ស្តីពីកម្មវិធីប្រកាសបើកយុទ្ធនាការដោះស្រាយការកកស្ទះសំណុំរឿងនៅតាមសាលាដំបូងរាជធានី-ខេត្ត
                       ...

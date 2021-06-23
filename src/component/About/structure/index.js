@@ -144,7 +144,7 @@ export default function () {
           </div>
 
           <div className="col-lg-9">
-            <img src={structureImg} alt="" srcset="" className="img-fluid" />
+            <img src={structureImg} alt="" srcSet="" className="img-fluid" />
           </div>
         </div>
       </div>

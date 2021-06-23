@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { Link } from "react-router-dom";
 import styles from "./index.module.css";
 
 import Paginate from "../../Shared/Pagination";
@@ -65,7 +64,7 @@ export default function () {
             className="col-md-4 col-12"
             style={{ color: "#e53e3e", fontWeight: "bold" }}
           >
-            <i class="fa fa-images mr-2"></i>
+            <i className="fa fa-images mr-2"></i>
             បណ្ណាល័យរូបភាព
           </div>
           <div className="row col-md-8 justify-content-end">

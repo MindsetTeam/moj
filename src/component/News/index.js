@@ -28,12 +28,11 @@ export default function (props) {
   const [loading, setLoading] = useState(true);
   const [totalPage, setTotalPage] = useState(0);
   let location = useLocation();
-  console.log(location);
   useEffect(() => {
     setLoading(true);
     fetch(
       `http://demo.mcs.gov.kh/moj/wp-json/wp/v2/news?_fields=id,date,title,content,acf${
-        types == "all" ? "" : `&categories=${location.state.id}`
+        types === "all" ? "" : `&categories=${location.state.id}`
       }&per_page=5&page=` + pageNum
     )
       .then((res) => {
@@ -46,7 +45,7 @@ export default function (props) {
         console.log(news);
         setLoading(false);
       });
-  }, [pageNum, location]);
+  }, [pageNum, location, types]);
   const changePageNum = (num) => {
     setPageNum(num.selected + 1);
   };
@@ -55,7 +54,7 @@ export default function (props) {
       <div className="row mt-2">
         <div className="col-lg-9">
           <div className="latest-news-container">
-            <div className="title mb-1 p-1 px-2 pt-2">ព័ត៌មាននិងឯកសារ</div>
+            <div className="title mb-1 p-1 px-2 pt-2">ព័ត៌មាននិង​ឯកសារ</div>
             {loading ? (
               <Loading />
             ) : !(news.length > 0) ? (
@@ -107,6 +106,7 @@ export default function (props) {
                             }}
                           >
                             <img
+                            alt=""
                               src={v.acf.image.sizes.medium}
                               className="img-fluid"
                               style={{
@@ -120,7 +120,7 @@ export default function (props) {
                             style={{ width: "65%" }}
                           >
                             <h1 className="each-daily-news-info-title">
-                              <a href="#">
+                              <a href="#foo">
                                 {truncateString(v.title.rendered, 470)}
                               </a>
                             </h1>
@@ -174,7 +174,7 @@ export default function (props) {
                   }}
                 >
                   <h1 className="each-daily-news-info-title">
-                    <a href="#">
+                    <a href="#foo">
                       ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
                       នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
                       នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សី...
@@ -211,7 +211,7 @@ export default function (props) {
                   }}
                 >
                   <h1 className="each-daily-news-info-title">
-                    <a href="#">
+                    <a href="#foo">
                       ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
                       នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
                       នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សី...
@@ -247,7 +247,7 @@ export default function (props) {
                   }}
                 >
                   <h1 className="each-daily-news-info-title">
-                    <a href="#">
+                    <a href="#foo">
                       ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
                       នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
                       នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សី...
@@ -283,7 +283,7 @@ export default function (props) {
                   }}
                 >
                   <h1 className="each-daily-news-info-title">
-                    <a href="#">
+                    <a href="#foo">
                       ឯកឧត្តមរដ្ឋមន្រ្តី​ក្រសួងយុត្តិធម៌ និង​ជាអនុប្រធានទី១
                       នៃក្រុមការងារថ្នាក់ជាតិចុះជួយ
                       នៃក្រុមការងារថ្នាក់ជាតិចុះជួយស្រុកមោងឬស្សី...
@@ -303,37 +303,37 @@ export default function (props) {
             </div>
             <div className="activities">
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity1} alt="" />
                   <p>ពាក្យស្នើសុំព្រឺតិ្តបត្រថ្កោលទោស</p>
                 </a>
               </div>
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity2} alt="" />
                   <p>យុទ្ធការដោះស្រាយការកកស្ទះសំណុំរឿង</p>
                 </a>
               </div>
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity3} alt="" />
                   <p>លេខាធិការដ្ឋានសាលាដំបូងរាជធានី-ខេត្ត</p>
                 </a>
               </div>
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity4} alt="" />
                   <p>កាលវិភាគប្រជុំរបស់ក្រសួងយុត្តិធម៌</p>
                 </a>
               </div>
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity5} alt="" />
                   <p>ឯកសារបោះពុម្ភផ្សាយ</p>
                 </a>
               </div>
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity6} alt="" />
                   <p>បណ្ណាល័យរូបភាព-វីដេអូ</p>
                 </a>

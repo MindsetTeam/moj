@@ -10,10 +10,8 @@ import Activity2 from "../../../asset/activity2.png";
 import Activity3 from "../../../asset/activity3.png";
 import Activity4 from "../../../asset/activity4.png";
 import extractionHtml from "../../../utils/extractionHTML";
-import truncateString from "../../../utils/truncateText";
 import convertToKhmer from "../../../utils/convertToKhmer";
 import NewsContext from "../../../context/newsTypes";
-import { MergeTypeSharp } from "@material-ui/icons";
 
 const convertISODatetoKhmer = (date) => {
   const dateKh = convertToKhmer.dateToKhmer(date);
@@ -27,7 +25,7 @@ export default function () {
   const [mainImage, setMainImage] = useState(null);
   const [relateNews, setRelateNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [newsTypes, setNewsTypes] = useState("");
+  // const [newsTypes, setNewsTypes] = useState("");
   const [newsTypesArr, setNewsTypesArr] = useState([])
   const [announcementData, setAnnouncementData] = useState([]);
 
@@ -51,12 +49,12 @@ export default function () {
       .then((data) => {
         
         const newsTypesArrFilter= data?.categories.map(v=> newsTypesData.find(singleType=>singleType.id ===v));
-        console.log(newsTypesArrFilter);
-        const newstypes = newsTypesData.filter((v) =>
-          data.categories.includes(v.id)
-        )[0];
+        // console.log(newsTypesArrFilter);
+        // const newstypes = newsTypesData.filter((v) =>
+        //   data.categories.includes(v.id)
+        // )[0];
         setNewsTypesArr(newsTypesArrFilter);
-        setNewsTypes(newstypes);
+        // setNewsTypes(newstypes);
         setMainImage(data.acf.image.url);
         setNewsData(data);
         setLoading(false);
@@ -81,14 +79,14 @@ export default function () {
         className={
           "col-md-4 " +
           (i !== 0 && i !== 3 ? " clearfix d-none d-md-block " : " pr-0 ") +
-          (i == 1 || i == 4 ? " p-0 " : "") +
-          (i == 2 || i == 5 ? " pl-0 " : "")
+          (i === 1 || i === 4 ? " p-0 " : "") +
+          (i === 2 || i === 5 ? " pl-0 " : "")
         }
       >
         <div
           className="card p-sm-3"
           style={
-            i == 1 || i == 4
+            i === 1 || i === 4
               ? {
                   border: 0,
                   borderRight: "7px solid #eeeeee",
@@ -100,8 +98,8 @@ export default function () {
           <img
             className="card-img-top img-fluid"
             src={v.acf.image.sizes["medium_large"]}
-            alt="Card image cap"
-            style={{ height: "160px" }}
+            alt="Card cap"
+            style={{ height: "160px", objectFit: 'cover'}}
             id="relatedNewsImageCustomized"
           />
           <div className="card-body">
@@ -178,6 +176,7 @@ export default function () {
                   </h1>
                   <div className="latest-news-thumbnail pb-lg-3 pt-lg-2">
                     <img
+                    alt=""
                       src={mainImage}
                       className="img-fluid py-1"
                       style={{ width: "100%" }}
@@ -275,7 +274,7 @@ export default function () {
                   className="each-daily-news col-12 mb-2"
                   style={{
                     borderBottom:
-                      i == announcementData.length - 1
+                      i === announcementData.length - 1
                         ? ""
                         : "2px solid #eeeeee",
                   }}
@@ -304,7 +303,7 @@ export default function () {
                   >
                     <Link to={`/law-documents/${v.id}`}>
                       <h1 className="each-daily-news-info-title">
-                        <a href="#">{v.title.rendered.slice(0, 131) + "..."}</a>
+                        <a href="#foo">{v.title.rendered.slice(0, 131) + "..."}</a>
                       </h1>
                     </Link>
                   </div>
@@ -323,25 +322,25 @@ export default function () {
             </div>
             <div className="activities">
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity1} alt="" />
                   <p>ពាក្យស្នើសុំព្រឺតិ្តបត្រថ្កោលទោស</p>
                 </a>
               </div>
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity2} alt="" />
                   <p>យុទ្ធការដោះស្រាយការកកស្ទះសំណុំរឿង</p>
                 </a>
               </div>
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity3} alt="" />
                   <p>លេខាធិការដ្ឋានសាលាដំបូងរាជធានី-ខេត្ត</p>
                 </a>
               </div>
               <div className="activity">
-                <a href="#">
+                <a href="#foo">
                   <img src={Activity4} alt="" />
                   <p>កាលវិភាគប្រជុំរបស់ក្រសួងយុត្តិធម៌</p>
                 </a>

@@ -1,13 +1,10 @@
-import React, { Component } from "react";
-import styles from "./index.module.css";
-
+import React from "react";
 // Import
 import CV from "./cv";
 import Form from "./form";
 
 // Material UI
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";

@@ -7,7 +7,7 @@ export class index extends Component {
   render() {
     return (
       <div className={styles.underConstructionContainer}>
-        <img src={logo} className={styles.logo}></img>
+        <img src={logo} className={styles.logo} alt=""></img>
         <p style={{ fontSize: "2rem" }}>
           Coming <span style={{ color: "#e53e3e" }}>Soon</span>
         </p>

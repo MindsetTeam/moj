@@ -48,7 +48,7 @@ export class index extends Component {
                 </div>
                 <div className="py-lg-1 pl-2" style={{ width: "60%" }}>
                   <h1 className={styles.ministerInfoTitle}>
-                    <a href="#">ឯកឧត្តម កើត រិទ្ធ</a>
+                    <a href="#foo">ឯកឧត្តម កើត រិទ្ធ</a>
                   </h1>
                   <p className={styles.ministerInfoDate}>
                     អាណត្តិ: (2020–បច្ចុប្បន្ន)
@@ -66,7 +66,7 @@ export class index extends Component {
                 </div>
                 <div className="py-lg-1 pl-2" style={{ width: "60%" }}>
                   <h1 className={styles.ministerInfoTitle}>
-                    <a href="#">ឯកឧត្តម អង្គ វង្សវឌ្ឍនា</a>
+                    <a href="#foo">ឯកឧត្តម អង្គ វង្សវឌ្ឍនា</a>
                   </h1>
                   <p className={styles.ministerInfoDate}>
                     អាណត្តិ: (2017–2020)
@@ -84,7 +84,7 @@ export class index extends Component {
                 </div>
                 <div className="py-lg-1 pl-2" style={{ width: "60%" }}>
                   <h1 className={styles.ministerInfoTitle}>
-                    <a href="#"> ឯកឧត្តម នាវ ស៊ីថុង</a>
+                    <a href="#foo"> ឯកឧត្តម នាវ ស៊ីថុង</a>
                   </h1>
                   <p className={styles.ministerInfoDate}>
                     អាណត្តិ: (2002-2017)
@@ -102,7 +102,7 @@ export class index extends Component {
                 </div>
                 <div className="py-lg-1 pl-2" style={{ width: "60%" }}>
                   <h1 className={styles.ministerInfoTitle}>
-                    <a href="#">ឯកឧត្តម អ៊ុក វិធុន</a>
+                    <a href="#foo">ឯកឧត្តម អ៊ុក វិធុន</a>
                   </h1>
                   <p className={styles.ministerInfoDate}>
                     អាណត្តិ: (1999–2001)
@@ -120,7 +120,7 @@ export class index extends Component {
                 </div>
                 <div className="py-lg-1 pl-2" style={{ width: "60%" }}>
                   <h1 className={styles.ministerInfoTitle}>
-                    <a href="#">ចែម ស្ងួន</a>
+                    <a href="#foo" >ចែម ស្ងួន</a>
                   </h1>
                   <p className={styles.ministerInfoDate}>
                     អាណត្តិ: (1993-1998)
